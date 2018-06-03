@@ -62,14 +62,14 @@ class nn:
             act = 1*np.max(0,Z)
         if(lower(self.activations[n_layer-1])=='tanh'):
             act = np.tanh(Z)
-        if(lower(self.activations[n_layer-1])=='sigmoid')
+        if(lower(self.activations[n_layer-1])=='sigmoid'):
             act = 1/(1+np.exp(-Z))
         
         assert(act!=None)
 
         return act,act_cache
     
-    def forward():
+    #def forward():
 
     
 
