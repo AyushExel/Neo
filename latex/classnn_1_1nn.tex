@@ -3,45 +3,63 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classnn_1_1nn_a1992cc6f205d0db65e338feef37e92dd}{\+\_\+\+\_\+init\+\_\+\+\_\+} (layer\+\_\+dimensions)
+def \hyperlink{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, layer\+\_\+dimensions, activations)
 \item 
 def \hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+parameters} (self, layer\+\_\+dimensions)
 \item 
-def \hyperlink{classnn_1_1nn_a60e827e96d3ce9b65a7563093cbd26fe}{activate} (self, Z, type)
+def \hyperlink{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}{initialize\+\_\+activations} (self, activations)
+\item 
+def \hyperlink{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}{forward} (self, input)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}{parameters}
+\mbox{\Hypertarget{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}\label{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}} 
+{\bfseries parameters}
 \item 
 \mbox{\Hypertarget{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}\label{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}} 
 {\bfseries cache}
+\item 
+\mbox{\Hypertarget{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}\label{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}} 
+{\bfseries activations}
 \end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_a1992cc6f205d0db65e338feef37e92dd}\label{classnn_1_1nn_a1992cc6f205d0db65e338feef37e92dd}} 
+\mbox{\Hypertarget{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}\label{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}} 
 \index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{layer\+\_\+dimensions }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+dimensions,  }\item[{}]{activations }\end{DoxyParamCaption})}
 
 \begin{DoxyVerb}Initializes networks's weights and other useful variables
 Variables-parameters=>contains weights of the layer in form {'Wi':[],'bi':[]}
-  cache=>contains intermediate results as ['activation',A[i-1],Wi,bi,Zi],where i
+  cache=>contains intermediate results as [[A[i-1],Wi,bi],[Zi]],where i
   is layer number.
+  activations=> TO store the activation for each layer
 \end{DoxyVerb}
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_a60e827e96d3ce9b65a7563093cbd26fe}\label{classnn_1_1nn_a60e827e96d3ce9b65a7563093cbd26fe}} 
-\index{nn\+::nn@{nn\+::nn}!activate@{activate}}
-\index{activate@{activate}!nn\+::nn@{nn\+::nn}}
-\subsubsection{\texorpdfstring{activate()}{activate()}}
-{\footnotesize\ttfamily def nn.\+nn.\+activate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Z,  }\item[{}]{type }\end{DoxyParamCaption})}
+\mbox{\Hypertarget{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}\label{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}} 
+\index{nn\+::nn@{nn\+::nn}!forward@{forward}}
+\index{forward@{forward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{forward()}{forward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{input }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Task-Activate the given layer(Z) using the activation function specified by 'type'
-inputs- Z=>layer to activate, type=>type of activation function to be used.
+\begin{DoxyVerb}Taks-To forward propagate the entire layer
+inputs- input=> Contains the input to the layer
+returns- Output of the network
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}\label{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}} 
+\index{nn\+::nn@{nn\+::nn}!initialize\+\_\+activations@{initialize\+\_\+activations}}
+\index{initialize\+\_\+activations@{initialize\+\_\+activations}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{initialize\+\_\+activations()}{initialize\_activations()}}
+{\footnotesize\ttfamily def nn.\+nn.\+initialize\+\_\+activations (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{activations }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Taks- Intialize the activation list 
+Inputs- A list dscribing various activation units
+Returns-none
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}\label{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}} 
 \index{nn\+::nn@{nn\+::nn}!initialize\+\_\+parameters@{initialize\+\_\+parameters}}
@@ -52,20 +70,6 @@ inputs- Z=>layer to activate, type=>type of activation function to be used.
 \begin{DoxyVerb}Task -Random intialization of weights of a network described by given layer dimensions
 inputs- layer_dimensions => dimensions to layers of the network
 returns- none.
-\end{DoxyVerb}
- 
-
-\subsection{Member Data Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}\label{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}} 
-\index{nn\+::nn@{nn\+::nn}!parameters@{parameters}}
-\index{parameters@{parameters}!nn\+::nn@{nn\+::nn}}
-\subsubsection{\texorpdfstring{parameters}{parameters}}
-{\footnotesize\ttfamily nn.\+nn.\+parameters}
-
-\begin{DoxyVerb}Initializes networks's weights and other useful variables
-Variables-parameters=>contains weights of the layer in form {'Wi':[],'bi':[]}
-  cache=>contains intermediate results as ['activation',A[i-1],Wi,bi,Zi],where i
-  is layer number.
 \end{DoxyVerb}
  
 

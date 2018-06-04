@@ -6,7 +6,7 @@ Contains all activation and loss functions some other utility function.
 import numpy as np 
 
 class nn:
-    def __init__(layer_dimensions,activations):
+    def __init__(self,layer_dimensions,activations):
         '''
         Initializes networks's weights and other useful variables
         Variables-parameters=>contains weights of the layer in form {'Wi':[],'bi':[]}
@@ -18,8 +18,8 @@ class nn:
         self.cache = []      
         self.activations= []
 
-        initialize_parameters(layer_dimensions)
-        initialize_activations(activations)
+        self.initialize_parameters(layer_dimensions)
+        self.initialize_activations(activations)
     
     def initialize_parameters(self,layer_dimensions):
         '''
@@ -29,7 +29,7 @@ class nn:
         '''
         for i in range(1,len(layer_dimensions)):
             self.parameters['W'+str(i)] = np.random.randn(layer_dimensions[i],layer_dimensions[i-1])*0.01
-            self.parameters['b'+str(i)] = np.zeros(layer_dimensions[i])
+            self.parameters['b'+str(i)] = np.zeros((layer_dimensions[i],1))
     
     def initialize_activations(self,activations):
         '''
@@ -39,7 +39,7 @@ class nn:
         '''
         self.activations = activations
     
-    def __linear_forward(A_prev,W,b):
+    def __linear_forward(self,A_prev,W,b):
         '''
         Task- Linear forward to the current layer using previous activations
         inputs- A_prev=>Previous Layer's activation,
@@ -53,23 +53,59 @@ class nn:
     def __activate(self,Z,n_layer):
         '''
         Task-Activate the given layer(Z) using the activation function specified by 'type'
-        inputs- Z=>layer to activate, type=>type of activation function to be used.
+        inputs- Z=>layer to activate, type=>type of activation function to be used
         returns- Activated layer and activation cache
+        Note: This function treats 1 as starting index! first layer's index is 1.
         '''
         act_cache = [Z]
         act = None
-        if(lower(self.activations[n_layer-1])=='relu'):
-            act = 1*np.max(0,Z)
-        if(lower(self.activations[n_layer-1])=='tanh'):
+        if((self.activations[n_layer-1]).lower()=='relu'):
+            act = Z*(Z>0)
+        if((self.activations[n_layer-1]).lower()=='tanh'):
             act = np.tanh(Z)
-        if(lower(self.activations[n_layer-1])=='sigmoid'):
+        if((self.activations[n_layer-1]).lower()=='sigmoid'):
             act = 1/(1+np.exp(-Z))
         
-        assert(act!=None)
+        #assert(act!=None)
 
         return act,act_cache
     
-    #def forward():
+    def forward(self,input):
+        '''
+        Taks-To forward propagate the entire layer
+        inputs- input=> Contains the input to the layer
+        returns- Output of the network
+        '''
+        A = input
+
+        for i in range(1,int(len(self.parameters)/2)):
+            W = self.parameters['W'+str(i)]
+            b = self.parameters['b'+str(i)]
+            Z,linear_cache = self.__linear_forward(A,W,b)
+
+            A,act_cache = self.__activate(Z,i)
+            self.cache.append([linear_cache,act_cache])
+        
+        #For Last Layer
+        W = self.parameters['W'+str(int(len(self.parameters)/2))]
+        b = self.parameters['b'+str(int(len(self.parameters)/2))]
+        Z,linear_cache = self.__linear_forward(A,W,b)
+        if len(self.activations)==len(self.parameters)/2:
+            A,act_cache = self.__activate(Z,len(self.activations))
+            self.cache.append([linear_cache,act_cache])
+        else:
+            A = Z
+            self.cache.append([linear_cache,[None]])
+
+        return A
+
+
+
+#test run:
+data = np.random.randn(2,100)
+net = nn([2,15,2],['tanh','relu'])
+A = net.forward(data)
+print(A.shape)
 
     
 
