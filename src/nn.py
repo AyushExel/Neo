@@ -53,7 +53,7 @@ class nn:
         linear_cache = [A_prev, W, b]
         return Z, linear_cache
 
-    def __activate(self, Z, n_layer):
+    def __activate(self, Z, n_layer=1):
         """
         Activate the given layer(Z) using the activation function specified by
         'type'.
