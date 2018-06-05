@@ -49,7 +49,8 @@ class nn:
         """
         self.activations = activations
 
-    def __linear_forward(self, A_prev, W, b):
+    @staticmethod
+    def __linear_forward(A_prev, W, b):
         """
         Linear forward to the current layer using previous activations.
 
@@ -87,14 +88,14 @@ class nn:
 
         return act, act_cache
 
-    def forward(self, input):
+    def forward(self, net_input):
         """
         To forward propagate the entire layer.
 
-        :param input: Contains the input to the Network
+        :param net_input: Contains the input to the Network
         :return: Output of the network
         """
-        A = input
+        A = net_input
 
         for i in range(1, int(len(self.parameters) / 2)):
             W = self.parameters["W" + str(i)]
@@ -117,18 +118,18 @@ class nn:
 
         return A
 
-    def forward_upto(self, input, layer_num):
+    def forward_upto(self, net_input, layer_num):
         """
         Calculates forward prop upto layer_num.
 
-        :param input: Contains the input to the Network
+        :param net_input: Contains the input to the Network
         :param layer_num: Layer up to which forward prop is to be calculated
         :return: Activations of layer layer_num
         """
         if layer_num == int(len(self.parameters) / 2):
-            return self.forward(input)
+            return self.forward(net_input)
         else:
-            A = input
+            A = net_input
             for i in range(1, layer_num):
                 W = self.parameters["W" + str(i)]
                 b = self.parameters["b" + str(i)]
