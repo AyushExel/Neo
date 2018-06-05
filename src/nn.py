@@ -20,10 +20,9 @@ class nn:
         """
         self.parameters = {}
         self.cache = []
-        self.activations = []
+        self.activations = activations
 
         self.initialize_parameters(layer_dimensions)
-        self.initialize_activations(activations)
 
     def initialize_parameters(self, layer_dimensions):
         """
@@ -39,15 +38,6 @@ class nn:
                                 layer_dimensions[i - 1]) * 0.01
             )
             self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
-
-    def initialize_activations(self, activations):
-        """
-        Initialize the activation list.
-
-        :param activations: A list describing various activation units
-        :return: None
-        """
-        self.activations = activations
 
     @staticmethod
     def __linear_forward(A_prev, W, b):
