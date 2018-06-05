@@ -141,6 +141,11 @@ class nn:
 
 
 def test_run():
+    """
+    Sample test run.
+
+    :return: None
+    """
     # test run:
     data = np.random.randn(2, 100)
     net = nn([2, 15, 2], ["tanh", "relu"])
