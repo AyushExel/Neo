@@ -73,7 +73,7 @@ class nn:
     def forward(self,input):
         '''
         Taks-To forward propagate the entire layer
-        inputs- input=> Contains the input to the layer
+        inputs- input=> Contains the input to the Network
         returns- Output of the network
         '''
         A = input
@@ -99,7 +99,26 @@ class nn:
 
         return A
 
+    def forward_upto(self,input,layer_num):
+        '''
+        Task- Calculates forward prop upto layer_num
+        Inputs- input=> Contains the input to the Network
+                layer_num=>Layer upto which forward prop is to be calculated
+        Returns- Activations of layer layer_num
+        '''
+        if layer_num == int(len(self.parameters)/2):
+            return self.forward(input)
+        else:
+            A = input
+            for i in range(1,layer_num):
+                W = self.parameters['W'+str(i)]
+                b = self.parameters['b'+str(i)]
+                Z,linear_cache = self.__linear_forward(A,W,b)
 
+                A,act_cache = self.__activate(Z,i)
+                self.cache.append([linear_cache,act_cache])
+            return A
+                
 
 #test run:
 data = np.random.randn(2,100)
