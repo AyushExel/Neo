@@ -4,7 +4,8 @@ Deep learning library in python from scratch
 This project is in a very early stage of development as of today (June 2,2018)
 
 # Documentation
-The documentation generated using Doxygen can be found in index.html file in HTML folder.
+The documentation generated using Doxygen can be found in documentaion folder.
+Please open `documentation/html/index.html` to view the documentation.
 
 # Dependencies
 Numpy

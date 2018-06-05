@@ -7,11 +7,9 @@ def \hyperlink{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}{\+\_\+\+\_\+init
 \item 
 def \hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+parameters} (self, layer\+\_\+dimensions)
 \item 
-def \hyperlink{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}{initialize\+\_\+activations} (self, activations)
+def \hyperlink{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}{forward} (self, net\+\_\+input)
 \item 
-def \hyperlink{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}{forward} (self, input)
-\item 
-def \hyperlink{classnn_1_1nn_afd6fb3877eeb0ddd889484caea7ca6e3}{forward\+\_\+upto} (self, input, layer\+\_\+num)
+def \hyperlink{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}{forward\+\_\+upto} (self, net\+\_\+input, layer\+\_\+num)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -34,45 +32,40 @@ def \hyperlink{classnn_1_1nn_afd6fb3877eeb0ddd889484caea7ca6e3}{forward\+\_\+upt
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
 {\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+dimensions,  }\item[{}]{activations }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Initializes networks's weights and other useful variables
-Variables-parameters=>contains weights of the layer in form {'Wi':[],'bi':[]}
-  cache=>contains intermediate results as [[A[i-1],Wi,bi],[Zi]],where i
-  is layer number.
-  activations=> TO store the activation for each layer
+\begin{DoxyVerb}Initializes networks's weights and other useful variables.
+
+Parameters contains weights of the layer in form {'Wi':[],'bi':[]}
+Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
+is layer number.
+
+:param layer_dimensions:
+:param activations: To store the activation for each layer
 \end{DoxyVerb}
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}\label{classnn_1_1nn_ace3e99e16bb7d1256d4d1fbf7e6cebd0}} 
+\mbox{\Hypertarget{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}\label{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}} 
 \index{nn\+::nn@{nn\+::nn}!forward@{forward}}
 \index{forward@{forward}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{forward()}{forward()}}
-{\footnotesize\ttfamily def nn.\+nn.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{input }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def nn.\+nn.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{net\+\_\+input }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Taks-To forward propagate the entire layer
-inputs- input=> Contains the input to the Network
-returns- Output of the network
+\begin{DoxyVerb}To forward propagate the entire layer.
+
+:param net_input: Contains the input to the Network
+:return: Output of the network
 \end{DoxyVerb}
- \mbox{\Hypertarget{classnn_1_1nn_afd6fb3877eeb0ddd889484caea7ca6e3}\label{classnn_1_1nn_afd6fb3877eeb0ddd889484caea7ca6e3}} 
+ \mbox{\Hypertarget{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}\label{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}} 
 \index{nn\+::nn@{nn\+::nn}!forward\+\_\+upto@{forward\+\_\+upto}}
 \index{forward\+\_\+upto@{forward\+\_\+upto}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{forward\+\_\+upto()}{forward\_upto()}}
-{\footnotesize\ttfamily def nn.\+nn.\+forward\+\_\+upto (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{input,  }\item[{}]{layer\+\_\+num }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def nn.\+nn.\+forward\+\_\+upto (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{net\+\_\+input,  }\item[{}]{layer\+\_\+num }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Task- Calculates forward prop upto layer_num
-Inputs- input=> Contains the input to the Network
-layer_num=>Layer upto which forward prop is to be calculated
-Returns- Activations of layer layer_num
-\end{DoxyVerb}
- \mbox{\Hypertarget{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}\label{classnn_1_1nn_a1f6dba2cb835e0d723f39106534062a7}} 
-\index{nn\+::nn@{nn\+::nn}!initialize\+\_\+activations@{initialize\+\_\+activations}}
-\index{initialize\+\_\+activations@{initialize\+\_\+activations}!nn\+::nn@{nn\+::nn}}
-\subsubsection{\texorpdfstring{initialize\+\_\+activations()}{initialize\_activations()}}
-{\footnotesize\ttfamily def nn.\+nn.\+initialize\+\_\+activations (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{activations }\end{DoxyParamCaption})}
+\begin{DoxyVerb}Calculates forward prop upto layer_num.
 
-\begin{DoxyVerb}Taks- Intialize the activation list 
-Inputs- A list dscribing various activation units
-Returns-none
+:param net_input: Contains the input to the Network
+:param layer_num: Layer up to which forward prop is to be calculated
+:return: Activations of layer layer_num
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}\label{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}} 
 \index{nn\+::nn@{nn\+::nn}!initialize\+\_\+parameters@{initialize\+\_\+parameters}}
@@ -80,12 +73,14 @@ Returns-none
 \subsubsection{\texorpdfstring{initialize\+\_\+parameters()}{initialize\_parameters()}}
 {\footnotesize\ttfamily def nn.\+nn.\+initialize\+\_\+parameters (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+dimensions }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Task -Random intialization of weights of a network described by given layer dimensions
-inputs- layer_dimensions => dimensions to layers of the network
-returns- none.
+\begin{DoxyVerb}Random initialization of weights of a network described by given layer
+dimensions.
+
+:param layer_dimensions: Dimensions to layers of the network
+:return: None
 \end{DoxyVerb}
  
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-nn.\+py\end{DoxyCompactItemize}
+src/nn.\+py\end{DoxyCompactItemize}
