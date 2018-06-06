@@ -10,6 +10,10 @@ def \hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+
 def \hyperlink{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}{forward} (self, net\+\_\+input)
 \item 
 def \hyperlink{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}{forward\+\_\+upto} (self, net\+\_\+input, layer\+\_\+num)
+\item 
+def \hyperlink{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}{M\+S\+E\+Loss} (self, prediction, mappings)
+\item 
+def \hyperlink{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}{Cross\+Entropy\+Loss} (self, prediction, mappings)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -22,6 +26,9 @@ def \hyperlink{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}{forward\+\_\+upt
 \item 
 \mbox{\Hypertarget{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}\label{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}} 
 {\bfseries activations}
+\item 
+\mbox{\Hypertarget{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}\label{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}} 
+{\bfseries cost\+\_\+function}
 \end{DoxyCompactItemize}
 
 
@@ -44,13 +51,26 @@ is layer number.
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}\label{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}} 
+\mbox{\Hypertarget{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}\label{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}} 
+\index{nn\+::nn@{nn\+::nn}!Cross\+Entropy\+Loss@{Cross\+Entropy\+Loss}}
+\index{Cross\+Entropy\+Loss@{Cross\+Entropy\+Loss}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{Cross\+Entropy\+Loss()}{CrossEntropyLoss()}}
+{\footnotesize\ttfamily def nn.\+nn.\+Cross\+Entropy\+Loss (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prediction,  }\item[{}]{mappings }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates the cross entropy loss between output of the network and the real mappings of a function
+Changes cost_function to appropriate value
+
+:param prediction: Output of the neural net
+:param mappings: Real outputs of a function
+:return: Mean squared error b/w output and mappings
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}\label{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}} 
 \index{nn\+::nn@{nn\+::nn}!forward@{forward}}
 \index{forward@{forward}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{forward()}{forward()}}
 {\footnotesize\ttfamily def nn.\+nn.\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{net\+\_\+input }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}To forward propagate the entire layer.
+\begin{DoxyVerb}To forward propagate the entire Network.
 
 :param net_input: Contains the input to the Network
 :return: Output of the network
@@ -78,6 +98,19 @@ dimensions.
 
 :param layer_dimensions: Dimensions to layers of the network
 :return: None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}\label{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}} 
+\index{nn\+::nn@{nn\+::nn}!M\+S\+E\+Loss@{M\+S\+E\+Loss}}
+\index{M\+S\+E\+Loss@{M\+S\+E\+Loss}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{M\+S\+E\+Loss()}{MSELoss()}}
+{\footnotesize\ttfamily def nn.\+nn.\+M\+S\+E\+Loss (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prediction,  }\item[{}]{mappings }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates the Mean Squared error between output of the network and the real mappings of a function.
+Changes cost_function to appropriate value
+
+:param prediction: Output of the neural net
+:param mappings: Real outputs of a function
+:return: Mean squared error b/w output and mappings
 \end{DoxyVerb}
  
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test_5frun',['test_run',['../namespacenn.html#a41434a534feda89aa18e029cdbe7d8ff',1,'nn']]]
+  ['initialize_5fparameters',['initialize_parameters',['../classnn_1_1nn.html#a9821fed1369b4d709fe297fe9e07d97b',1,'nn::nn']]]
 ];

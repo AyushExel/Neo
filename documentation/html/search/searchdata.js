@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "_fint",
+  0: "_cfimnt",
   1: "n",
   2: "n",
-  3: "_fit"
+  3: "_cfimt"
 };
 
 var indexSectionNames =

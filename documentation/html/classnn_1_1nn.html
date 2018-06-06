@@ -82,6 +82,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae07002745b03901814d92ac66fe87781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3d2b61ed992dc615eacda8e75a61a2b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#ac3d2b61ed992dc615eacda8e75a61a2b">forward_upto</a> (self, net_input, layer_num)</td></tr>
 <tr class="separator:ac3d2b61ed992dc615eacda8e75a61a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae74a0f21e8722ea82a0f94135a81a348"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#ae74a0f21e8722ea82a0f94135a81a348">MSELoss</a> (self, prediction, mappings)</td></tr>
+<tr class="separator:ae74a0f21e8722ea82a0f94135a81a348"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a822299322a0b513f8985e61096be45bc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a822299322a0b513f8985e61096be45bc">CrossEntropyLoss</a> (self, prediction, mappings)</td></tr>
+<tr class="separator:a822299322a0b513f8985e61096be45bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -94,6 +98,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:acb7fb4cc0db120b007ef1ab1f82d7ba0"><td class="memItemLeft" align="right" valign="top"><a id="acb7fb4cc0db120b007ef1ab1f82d7ba0"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>activations</b></td></tr>
 <tr class="separator:acb7fb4cc0db120b007ef1ab1f82d7ba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4a96a154d03db3722022600e134c7f"><td class="memItemLeft" align="right" valign="top"><a id="adb4a96a154d03db3722022600e134c7f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>cost_function</b></td></tr>
+<tr class="separator:adb4a96a154d03db3722022600e134c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad7304c7932970a07bf2869e97b79e0b5"></a>
@@ -139,6 +146,46 @@ is layer number.
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a822299322a0b513f8985e61096be45bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a822299322a0b513f8985e61096be45bc">&#9670;&nbsp;</a></span>CrossEntropyLoss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.CrossEntropyLoss </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>prediction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mappings</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Calculates the cross entropy loss between output of the network and the real mappings of a function
+Changes cost_function to appropriate value
+
+:param prediction: Output of the neural net
+:param mappings: Real outputs of a function
+:return: Mean squared error b/w output and mappings
+</pre> 
+</div>
+</div>
 <a id="ae07002745b03901814d92ac66fe87781"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae07002745b03901814d92ac66fe87781">&#9670;&nbsp;</a></span>forward()</h2>
 
@@ -164,7 +211,7 @@ is layer number.
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">To forward propagate the entire layer.
+<pre class="fragment">To forward propagate the entire Network.
 
 :param net_input: Contains the input to the Network
 :return: Output of the network
@@ -240,6 +287,46 @@ dimensions.
 
 :param layer_dimensions: Dimensions to layers of the network
 :return: None
+</pre> 
+</div>
+</div>
+<a id="ae74a0f21e8722ea82a0f94135a81a348"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae74a0f21e8722ea82a0f94135a81a348">&#9670;&nbsp;</a></span>MSELoss()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.MSELoss </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>prediction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mappings</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Calculates the Mean Squared error between output of the network and the real mappings of a function.
+Changes cost_function to appropriate value
+
+:param prediction: Output of the neural net
+:param mappings: Real outputs of a function
+:return: Mean squared error b/w output and mappings
 </pre> 
 </div>
 </div>

@@ -21,6 +21,7 @@ class nn:
         self.parameters = {}
         self.cache = []
         self.activations = activations
+        self.cost_function = ''
 
         self.initialize_parameters(layer_dimensions)
 
@@ -80,7 +81,7 @@ class nn:
 
     def forward(self, net_input):
         """
-        To forward propagate the entire layer.
+        To forward propagate the entire Network.
 
         :param net_input: Contains the input to the Network
         :return: Output of the network
@@ -128,6 +129,36 @@ class nn:
                 A, act_cache = self.__activate(Z, i)
                 self.cache.append([linear_cache, act_cache])
             return A
+    
+    def MSELoss(self,prediction,mappings):
+        '''
+        Calculates the Mean Squared error between output of the network and the real mappings of a function.
+        Changes cost_function to appropriate value
+
+        :param prediction: Output of the neural net
+        :param mappings: Real outputs of a function
+        :return: Mean squared error b/w output and mappings
+        '''
+
+        self.cost_function = 'MSELoss'
+        return np.square(prediction-mappings).mean()
+    
+    def CrossEntropyLoss(self,prediction,mappings):
+        '''
+        Calculates the cross entropy loss between output of the network and the real mappings of a function
+        Changes cost_function to appropriate value
+
+        :param prediction: Output of the neural net
+        :param mappings: Real outputs of a function
+        :return: Mean squared error b/w output and mappings
+        '''
+        self.cost_function = 'CrossEntropyLoss'
+        return -(1/output.shape[1])*( mappings*np.log(prediction) + (1-mappings)*np.log(1-prediction) ).sum()
+
+
+        
+    
+
 
 
 def test_run():
