@@ -7,7 +7,7 @@ import numpy as np
 
 
 class nn:
-    def __init__(self, layer_dimensions, activations):
+    def __init__(self, layer_dimensions, activations, cost_function):
         """
         Initializes networks's weights and other useful variables.
 
@@ -21,7 +21,7 @@ class nn:
         self.parameters = {}
         self.cache = []
         self.activations = activations
-        self.cost_function = ''
+        self.cost_function = cost_function
 
         self.initialize_parameters(layer_dimensions)
 
@@ -39,20 +39,6 @@ class nn:
                                 layer_dimensions[i - 1]) * 0.01
             )
             self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
-
-    @staticmethod
-    def __linear_forward(A_prev, W, b):
-        """
-        Linear forward to the current layer using previous activations.
-
-        :param A_prev: Previous Layer's activation
-        :param W: Weights for current layer
-        :param b: Biases for current layer
-        :return: Linear cache and current calculated layer
-        """
-        Z = W.dot(A_prev) + b
-        linear_cache = [A_prev, W, b]
-        return Z, linear_cache
 
     def __activate(self, Z, n_layer=1):
         """
@@ -129,36 +115,51 @@ class nn:
                 A, act_cache = self.__activate(Z, i)
                 self.cache.append([linear_cache, act_cache])
             return A
-    
-    def MSELoss(self,prediction,mappings):
-        '''
-        Calculates the Mean Squared error between output of the network and the real mappings of a function.
-        Changes cost_function to appropriate value
+
+    @staticmethod
+    def __linear_forward(A_prev, W, b):
+        """
+        Linear forward to the current layer using previous activations.
+
+        :param A_prev: Previous Layer's activation
+        :param W: Weights for current layer
+        :param b: Biases for current layer
+        :return: Linear cache and current calculated layer
+        """
+        Z = W.dot(A_prev) + b
+        linear_cache = [A_prev, W, b]
+        return Z, linear_cache
+
+    @staticmethod
+    def cross_entropy_loss(prediction, mappings):
+        """
+        Calculates the cross entropy loss between output of the network and
+        the real mappings of a function.
+
+        Changes cost_function to appropriate value.
 
         :param prediction: Output of the neural net
         :param mappings: Real outputs of a function
         :return: Mean squared error b/w output and mappings
-        '''
+        """
+        a = -(1 / output.shape[1])
+        b = mappings * np.log(prediction)
+        c = (b + (1 - mappings) * np.log(1 - prediction))
+        return a * c.sum()
+    
+    @staticmethod
+    def mse_loss(prediction, mappings):
+        """
+        Calculates the Mean Squared error between output of the network and
+        the real mappings of a function.
 
-        self.cost_function = 'MSELoss'
+        Changes cost_function to appropriate value.
+
+        :param prediction: Output of the neural net
+        :param mappings: Real outputs of a function
+        :return: Mean squared error b/w output and mappings
+        """
         return np.square(prediction-mappings).mean()
-    
-    def CrossEntropyLoss(self,prediction,mappings):
-        '''
-        Calculates the cross entropy loss between output of the network and the real mappings of a function
-        Changes cost_function to appropriate value
-
-        :param prediction: Output of the neural net
-        :param mappings: Real outputs of a function
-        :return: Mean squared error b/w output and mappings
-        '''
-        self.cost_function = 'CrossEntropyLoss'
-        return -(1/output.shape[1])*( mappings*np.log(prediction) + (1-mappings)*np.log(1-prediction) ).sum()
-
-
-        
-    
-
 
 
 def test_run():
