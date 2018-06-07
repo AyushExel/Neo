@@ -65,6 +65,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classnn_1_1nn-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -86,6 +87,11 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae74a0f21e8722ea82a0f94135a81a348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822299322a0b513f8985e61096be45bc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a822299322a0b513f8985e61096be45bc">CrossEntropyLoss</a> (self, prediction, mappings)</td></tr>
 <tr class="separator:a822299322a0b513f8985e61096be45bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a1ca8bcabd14da37dc25bbf49242dfd2c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a1ca8bcabd14da37dc25bbf49242dfd2c">output_backward</a> (prediction, mapping, cost_type)</td></tr>
+<tr class="separator:a1ca8bcabd14da37dc25bbf49242dfd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -327,6 +333,53 @@ Changes cost_function to appropriate value
 :param prediction: Output of the neural net
 :param mappings: Real outputs of a function
 :return: Mean squared error b/w output and mappings
+</pre> 
+</div>
+</div>
+<a id="a1ca8bcabd14da37dc25bbf49242dfd2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ca8bcabd14da37dc25bbf49242dfd2c">&#9670;&nbsp;</a></span>output_backward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.output_backward </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>prediction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mapping</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>cost_type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<pre class="fragment">Calculates the derivative of the output layer(dA)
+
+:param prediction: Output of neural net
+:param cost_type: Type of Cost function used
+:return: Derivative of output layer, dA  
 </pre> 
 </div>
 </div>

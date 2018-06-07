@@ -141,7 +141,7 @@ class nn:
         '''
 
         self.cost_function = 'MSELoss'
-        return np.square(prediction-mappings).mean()
+        return np.square(prediction-mappings).mean()/2
     
     def CrossEntropyLoss(self,prediction,mappings):
         '''
@@ -152,8 +152,28 @@ class nn:
         :param mappings: Real outputs of a function
         :return: Mean squared error b/w output and mappings
         '''
+        epsilon = 1e-8
         self.cost_function = 'CrossEntropyLoss'
-        return -(1/output.shape[1])*( mappings*np.log(prediction) + (1-mappings)*np.log(1-prediction) ).sum()
+        return -(1/prediction.shape[1])*np.sum( mappings*np.log(prediction+epsilon) + (1-mappings)*np.log(1-prediction+epsilon) )
+    
+    @staticmethod
+    def output_backward(prediction,mapping,cost_type):
+        '''
+        Calculates the derivative of the output layer(dA)
+
+        :param prediction: Output of neural net
+        :param cost_type: Type of Cost function used
+        :return: Derivative of output layer, dA  
+        '''
+        dA = None
+        if cost_type.lower() == 'crossentropyloss':
+            dA =  (np.divide(mapping, prediction) - np.divide(1 - mapping, 1 - prediction))
+        
+        elif cost_type.lower() == 'mseloss':   
+            dA =  (prediction-mapping)
+        
+        return dA
+            
 
 
         

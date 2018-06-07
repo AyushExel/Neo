@@ -15,6 +15,11 @@ def \hyperlink{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}{M\+S\+E\+Loss} (
 \item 
 def \hyperlink{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}{Cross\+Entropy\+Loss} (self, prediction, mappings)
 \end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classnn_1_1nn_a1ca8bcabd14da37dc25bbf49242dfd2c}{output\+\_\+backward} (prediction, mapping, cost\+\_\+type)
+\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,6 +116,18 @@ Changes cost_function to appropriate value
 :param prediction: Output of the neural net
 :param mappings: Real outputs of a function
 :return: Mean squared error b/w output and mappings
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a1ca8bcabd14da37dc25bbf49242dfd2c}\label{classnn_1_1nn_a1ca8bcabd14da37dc25bbf49242dfd2c}} 
+\index{nn\+::nn@{nn\+::nn}!output\+\_\+backward@{output\+\_\+backward}}
+\index{output\+\_\+backward@{output\+\_\+backward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{output\+\_\+backward()}{output\_backward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+output\+\_\+backward (\begin{DoxyParamCaption}\item[{}]{prediction,  }\item[{}]{mapping,  }\item[{}]{cost\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Calculates the derivative of the output layer(dA)
+
+:param prediction: Output of neural net
+:param cost_type: Type of Cost function used
+:return: Derivative of output layer, dA  
 \end{DoxyVerb}
  
 
