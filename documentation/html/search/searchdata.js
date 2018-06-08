@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "_cfimnot",
+  0: "_cdfimnot",
   1: "n",
   2: "n",
-  3: "_cfimot"
+  3: "_cdfimot"
 };
 
 var indexSectionNames =

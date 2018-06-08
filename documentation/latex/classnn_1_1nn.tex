@@ -14,6 +14,8 @@ def \hyperlink{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}{forward\+\_\+upt
 def \hyperlink{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}{M\+S\+E\+Loss} (self, prediction, mappings)
 \item 
 def \hyperlink{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}{Cross\+Entropy\+Loss} (self, prediction, mappings)
+\item 
+def \hyperlink{classnn_1_1nn_a475811849fd370a47eb0e3b7bc09b283}{deactivate} (self, dA, n\+\_\+layer)
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
@@ -68,6 +70,17 @@ Changes cost_function to appropriate value
 :param prediction: Output of the neural net
 :param mappings: Real outputs of a function
 :return: Mean squared error b/w output and mappings
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a475811849fd370a47eb0e3b7bc09b283}\label{classnn_1_1nn_a475811849fd370a47eb0e3b7bc09b283}} 
+\index{nn\+::nn@{nn\+::nn}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily def nn.\+nn.\+deactivate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dA,  }\item[{}]{n\+\_\+layer }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Calculates the derivate of dA by deactivating the layer
+
+:param dA: Activated derivative of the layer
+:n_layer: Layer number to be deactivated
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}\label{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}} 
 \index{nn\+::nn@{nn\+::nn}!forward@{forward}}

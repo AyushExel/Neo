@@ -87,6 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae74a0f21e8722ea82a0f94135a81a348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822299322a0b513f8985e61096be45bc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a822299322a0b513f8985e61096be45bc">CrossEntropyLoss</a> (self, prediction, mappings)</td></tr>
 <tr class="separator:a822299322a0b513f8985e61096be45bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a475811849fd370a47eb0e3b7bc09b283"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a475811849fd370a47eb0e3b7bc09b283">deactivate</a> (self, dA, n_layer)</td></tr>
+<tr class="separator:a475811849fd370a47eb0e3b7bc09b283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -189,6 +191,44 @@ Changes cost_function to appropriate value
 :param prediction: Output of the neural net
 :param mappings: Real outputs of a function
 :return: Mean squared error b/w output and mappings
+</pre> 
+</div>
+</div>
+<a id="a475811849fd370a47eb0e3b7bc09b283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a475811849fd370a47eb0e3b7bc09b283">&#9670;&nbsp;</a></span>deactivate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.deactivate </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>dA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_layer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Calculates the derivate of dA by deactivating the layer
+
+:param dA: Activated derivative of the layer
+:n_layer: Layer number to be deactivated
 </pre> 
 </div>
 </div>

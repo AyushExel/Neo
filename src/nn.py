@@ -173,6 +173,28 @@ class nn:
             dA =  (prediction-mapping)
         
         return dA
+    
+    def deactivate(self,dA,n_layer):
+        '''
+        Calculates the derivate of dA by deactivating the layer
+
+        :param dA: Activated derivative of the layer
+        :n_layer: Layer number to be deactivated
+        '''
+        act_cache = self.cache[n_layer-1][1]
+        dZ = act_cache[0]
+        deact = None
+        if (self.activations[n_layer - 1]).lower() == "relu":
+            deact = 1* (dZ>0)
+        if (self.activations[n_layer - 1]).lower() == "tanh":
+            deact = 1- np.square(dA)
+        if (self.activations[n_layer - 1]).lower() == "sigmoid":
+            deact = dA*(1-dA)
+        if (self.activations[n_layer - 1]) == None):
+            deact = dZ
+        
+        return deact
+        
             
 
 
@@ -189,8 +211,12 @@ def test_run():
     """
     # test run:
     data = np.random.randn(2, 100)
-    net = nn([2, 15, 2], ["tanh", "relu"])
+    mappings = data**2
+    net = nn([2, 15, 2], ["tanh", "tanh"])
     A = net.forward(data)
+    cost = net.MSELoss(A,mappings)
+    dA = net.output_backward(A,mappings,'MSELoss')
+    dZ = net.deactivate(dA,2)
     print(A.shape)
 
 
