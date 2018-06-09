@@ -190,7 +190,7 @@ class nn:
             deact = 1- np.square(dA)
         if (self.activations[n_layer - 1]).lower() == "sigmoid":
             deact = dA*(1-dA)
-        if (self.activations[n_layer - 1]) == None):
+        if self.activations[n_layer - 1] == None:
             deact = dZ
         
         return deact
