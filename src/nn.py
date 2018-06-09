@@ -11,18 +11,19 @@ class nn:
         """
         Initializes networks's weights and other useful variables.
 
-        Parameters contains weights of the layer in form {'Wi':[],'bi':[]}
-        Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
-        is layer number.
-
         :param layer_dimensions:
         :param activations: To store the activation for each layer
+        -Parameters contains weights of the layer in form {'Wi':[],'bi':[]}
+        -Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
+         is layer number.
+        -activations contains the names of activation function used for that layer
+        -grads contains the gradients calculated during back-prop
         """
         self.parameters = {}
         self.cache = []
         self.activations = activations
         self.cost_function = ''
-
+        self.grads = {}
         self.initialize_parameters(layer_dimensions)
 
     def initialize_parameters(self, layer_dimensions):
@@ -161,6 +162,7 @@ class nn:
         Calculates the derivative of the output layer(dA)
 
         :param prediction: Output of neural net
+        :param mapping: Correct output of the function
         :param cost_type: Type of Cost function used
         :return: Derivative of output layer, dA  
         '''
@@ -180,6 +182,7 @@ class nn:
 
         :param dA: Activated derivative of the layer
         :n_layer: Layer number to be deactivated
+        :return: deact=> derivative of activation 
         '''
         act_cache = self.cache[n_layer-1][1]
         dZ = act_cache[0]
@@ -194,6 +197,46 @@ class nn:
             deact = dZ
         
         return deact
+    
+    def linear_backward(self,dA,n_layer):
+        '''
+        Calculates linear backward propragation for layer denoted by n_layer
+
+        :param dA: Derivative of cost w.r.t this layer
+        :param n_layer: layer number
+        :return : dZ,dW,db,dA_prev
+        '''
+        batch_size = dA.shape[1]
+        current_cache = self.cache[n_layer-1]
+        linear_cache = current_cache[0]
+        A_prev,W,b = linear_cache
+
+        dZ = dA*self.deactivate(dA,n_layer)
+        dW = (1/batch_size)*dZ.dot(A_prev.T)
+        db = (1/batch_size)*np.sum(dZ,keepdims=True,axis=1)
+        dA_prev = W.T.dot(dZ)
+
+        assert(dA_prev.shape == A_prev.shape)
+        assert(dW.shape == W.shape)
+        assert(db.shape == b.shape)
+        
+        return dZ,dW,db,dA_prev
+        
+        
+
+        
+
+    def backward(self,prediction,mappings):
+        '''
+        Backward propagates through the network and stores useful calculations
+
+        :param prediction: Output of neural net
+        :param mapping: Correct output of the function
+        '''
+        #dA = self.output_backward(prediction,mapping)
+    
+
+        
         
             
 
