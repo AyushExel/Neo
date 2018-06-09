@@ -156,8 +156,7 @@ class nn:
         self.cost_function = 'CrossEntropyLoss'
         return -(1/prediction.shape[1])*np.sum( mappings*np.log(prediction+epsilon) + (1-mappings)*np.log(1-prediction+epsilon) )
     
-    @staticmethod
-    def output_backward(prediction,mapping,cost_type):
+    def output_backward(self,prediction,mapping):
         '''
         Calculates the derivative of the output layer(dA)
 
@@ -166,10 +165,11 @@ class nn:
         :return: Derivative of output layer, dA  
         '''
         dA = None
-        if cost_type.lower() == 'crossentropyloss':
+        cost = self.cost_function
+        if cost.lower() == 'crossentropyloss':
             dA =  (np.divide(mapping, prediction) - np.divide(1 - mapping, 1 - prediction))
         
-        elif cost_type.lower() == 'mseloss':   
+        elif cost.lower() == 'mseloss':   
             dA =  (prediction-mapping)
         
         return dA
@@ -215,7 +215,7 @@ def test_run():
     net = nn([2, 15, 2], ["tanh", "tanh"])
     A = net.forward(data)
     cost = net.MSELoss(A,mappings)
-    dA = net.output_backward(A,mappings,'MSELoss')
+    dA = net.output_backward(A,mappings)
     dZ = net.deactivate(dA,2)
     print(A.shape)
 
