@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['test_5frun',['test_run',['../namespacenn.html#a41434a534feda89aa18e029cdbe7d8ff',1,'nn']]]
+  ['mseloss',['MSELoss',['../classnn_1_1nn.html#ae74a0f21e8722ea82a0f94135a81a348',1,'nn::nn']]]
 ];

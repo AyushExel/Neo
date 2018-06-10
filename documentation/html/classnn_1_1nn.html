@@ -65,7 +65,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="classnn_1_1nn-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -87,13 +86,14 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae74a0f21e8722ea82a0f94135a81a348"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822299322a0b513f8985e61096be45bc"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a822299322a0b513f8985e61096be45bc">CrossEntropyLoss</a> (self, prediction, mappings)</td></tr>
 <tr class="separator:a822299322a0b513f8985e61096be45bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa7d1462872fae95fe71f27ed00bf7ae"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#afa7d1462872fae95fe71f27ed00bf7ae">output_backward</a> (self, prediction, mapping)</td></tr>
+<tr class="separator:afa7d1462872fae95fe71f27ed00bf7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a475811849fd370a47eb0e3b7bc09b283"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a475811849fd370a47eb0e3b7bc09b283">deactivate</a> (self, dA, n_layer)</td></tr>
 <tr class="separator:a475811849fd370a47eb0e3b7bc09b283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1ca8bcabd14da37dc25bbf49242dfd2c"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a1ca8bcabd14da37dc25bbf49242dfd2c">output_backward</a> (prediction, mapping, cost_type)</td></tr>
-<tr class="separator:a1ca8bcabd14da37dc25bbf49242dfd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0863e90359fa30486c7161cd31c5b4e7"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a0863e90359fa30486c7161cd31c5b4e7">linear_backward</a> (self, dA, n_layer)</td></tr>
+<tr class="separator:a0863e90359fa30486c7161cd31c5b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53a7beb698fe127ebb1f636fccbaa126"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a53a7beb698fe127ebb1f636fccbaa126">backward</a> (self, prediction, mappings)</td></tr>
+<tr class="separator:a53a7beb698fe127ebb1f636fccbaa126"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -109,6 +109,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:adb4a96a154d03db3722022600e134c7f"><td class="memItemLeft" align="right" valign="top"><a id="adb4a96a154d03db3722022600e134c7f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>cost_function</b></td></tr>
 <tr class="separator:adb4a96a154d03db3722022600e134c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e9804c2895867c31833f877c7d5d60"><td class="memItemLeft" align="right" valign="top"><a id="a50e9804c2895867c31833f877c7d5d60"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>grads</b></td></tr>
+<tr class="separator:a50e9804c2895867c31833f877c7d5d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad7304c7932970a07bf2869e97b79e0b5"></a>
@@ -144,16 +147,56 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">Initializes networks's weights and other useful variables.
 
-Parameters contains weights of the layer in form {'Wi':[],'bi':[]}
-Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
-is layer number.
-
 :param layer_dimensions:
 :param activations: To store the activation for each layer
+-Parameters contains weights of the layer in form {'Wi':[],'bi':[]}
+-Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
+ is layer number.
+-activations contains the names of activation function used for that layer
+-grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
 </pre> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a53a7beb698fe127ebb1f636fccbaa126"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53a7beb698fe127ebb1f636fccbaa126">&#9670;&nbsp;</a></span>backward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.backward </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>prediction</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mappings</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Backward propagates through the network and stores useful calculations
+
+:param prediction: Output of neural net
+:param mapping: Correct output of the function
+:return : None
+</pre> 
+</div>
+</div>
 <a id="a822299322a0b513f8985e61096be45bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a822299322a0b513f8985e61096be45bc">&#9670;&nbsp;</a></span>CrossEntropyLoss()</h2>
 
@@ -229,6 +272,7 @@ Changes cost_function to appropriate value
 
 :param dA: Activated derivative of the layer
 :n_layer: Layer number to be deactivated
+:return: deact=&gt; derivative of activation 
 </pre> 
 </div>
 </div>
@@ -336,6 +380,45 @@ dimensions.
 </pre> 
 </div>
 </div>
+<a id="a0863e90359fa30486c7161cd31c5b4e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0863e90359fa30486c7161cd31c5b4e7">&#9670;&nbsp;</a></span>linear_backward()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.linear_backward </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>dA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>n_layer</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Calculates linear backward propragation for layer denoted by n_layer
+
+:param dA: Derivative of cost w.r.t this layer
+:param n_layer: layer number
+:return : dZ,dW,db,dA_prev
+</pre> 
+</div>
+</div>
 <a id="ae74a0f21e8722ea82a0f94135a81a348"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae74a0f21e8722ea82a0f94135a81a348">&#9670;&nbsp;</a></span>MSELoss()</h2>
 
@@ -376,18 +459,21 @@ Changes cost_function to appropriate value
 </pre> 
 </div>
 </div>
-<a id="a1ca8bcabd14da37dc25bbf49242dfd2c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ca8bcabd14da37dc25bbf49242dfd2c">&#9670;&nbsp;</a></span>output_backward()</h2>
+<a id="afa7d1462872fae95fe71f27ed00bf7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa7d1462872fae95fe71f27ed00bf7ae">&#9670;&nbsp;</a></span>output_backward()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">def nn.nn.output_backward </td>
           <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">&#160;</td>
           <td class="paramname"><em>prediction</em>, </td>
         </tr>
@@ -395,13 +481,7 @@ Changes cost_function to appropriate value
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>mapping</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>cost_type</em>&#160;</td>
+          <td class="paramname"><em>mapping</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -409,15 +489,11 @@ Changes cost_function to appropriate value
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 <pre class="fragment">Calculates the derivative of the output layer(dA)
 
 :param prediction: Output of neural net
+:param mapping: Correct output of the function
 :param cost_type: Type of Cost function used
 :return: Derivative of output layer, dA  
 </pre> 
