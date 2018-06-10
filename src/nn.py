@@ -17,7 +17,7 @@ class nn:
         -Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
          is layer number.
         -activations contains the names of activation function used for that layer
-        -grads contains the gradients calculated during back-prop
+        -grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
         """
         self.parameters = {}
         self.cache = []
@@ -220,7 +220,7 @@ class nn:
         assert(dW.shape == W.shape)
         assert(db.shape == b.shape)
         
-        return dZ,dW,db,dA_prev
+        return dW,db,dA_prev
         
         
 
@@ -232,8 +232,19 @@ class nn:
 
         :param prediction: Output of neural net
         :param mapping: Correct output of the function
+        :return : None
         '''
-        #dA = self.output_backward(prediction,mapping)
+        layer_num = len(self.cache)
+        doutput = self.output_backward(prediction,mappings)
+
+        self.grads['dW'+str(layer_num)],self.grads['db'+str(layer_num)],self.grads['dA'+str(layer_num-1)] = self.linear_backward(doutput,layer_num)
+
+        for l in reversed(range(layer_num-1)):
+            dW,db,dA_prev = self.linear_backward(self.grads['dA'+str(l+1)],l+1)
+            self.grads['dW'+str(l+1)] = dW
+            self.grads['db'+str(l+1)] = db
+            self.grads['dA'+str(l)] = dA_prev
+
     
 
         
@@ -260,6 +271,7 @@ def test_run():
     cost = net.MSELoss(A,mappings)
     dA = net.output_backward(A,mappings)
     dZ = net.deactivate(dA,2)
+    net.backward(A,mappings)
     print(A.shape)
 
 
