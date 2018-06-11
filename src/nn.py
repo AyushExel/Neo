@@ -244,6 +244,35 @@ class nn:
             self.grads['dW'+str(l+1)] = dW
             self.grads['db'+str(l+1)] = db
             self.grads['dA'+str(l)] = dA_prev
+    
+    def gradientDescent(self,input,mappings,alpha=0.001,epoch=100,print_at=5,prnt=True):
+        '''
+        Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
+
+        :param input: input for neural net
+        :param mapping: Correct output of the function
+        :param alpha: Learning rate
+        :param epoch: Number of iterations
+        :param print_at: Print at multiples of 'print_at'
+        :param prnt: Print if prnt=true
+        '''
+
+        for i in range(epoch):
+            prediction = self.forward(input)
+            loss_function = (self.cost_function).lower()
+            loss = None
+            if loss_function == 'mseloss':
+                loss = self.MSELoss(prediction,mappings)
+            if loss_function == 'crossentropyloss':
+                loss = self.CrossEntropyLoss(prediction,mappings)
+            
+            if prnt and i%print_at==0 :
+                print('Loss at ',i, ' ' ,loss)
+            
+            for l in range(len(self.parameters)/2):
+                self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
+                self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
+
 
     
 
