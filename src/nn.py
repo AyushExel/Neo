@@ -118,6 +118,7 @@ class nn:
         :param layer_num: Layer up to which forward prop is to be calculated
         :return: Activations of layer layer_num
         """
+        self.cache = []
         if layer_num == int(len(self.parameters) / 2):
             return self.forward(net_input)
         else:
@@ -268,10 +269,11 @@ class nn:
             
             if prnt and i%print_at==0 :
                 print('Loss at ',i, ' ' ,loss)
+            net.backward(prediction,mappings)
             
             for l in range(len(self.parameters)/2):
                 self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
-                self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
+                self.parameters['b'+str(l+1)] = self.parameters['b'+str(l+1)] -alpha*self.grads['db'+str(l+1)]
 
 
     
