@@ -270,7 +270,7 @@ class nn:
             
             if prnt and i%print_at==0 :
                 print('Loss at ',i, ' ' ,loss)
-            net.backward(prediction,mappings)
+            self.backward(prediction,mappings)
             
             for l in range(int(len(self.parameters)/2)):
                 self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
@@ -289,23 +289,3 @@ class nn:
 
 
 
-def test_run():
-    """
-    Sample test run.
-
-    :return: None
-    """
-    # test run:
-    data = np.random.randn(2, 100)
-    mappings = data**2
-    net = nn([2, 15, 2], ["tanh", "tanh"])
-    A = net.forward(data)
-    cost = net.MSELoss(A,mappings)
-    dA = net.output_backward(A,mappings)
-    dZ = net.deactivate(dA,2)
-    net.backward(A,mappings)
-    print(A.shape)
-
-
-if __name__ == "__main__":
-    test_run()
