@@ -118,7 +118,6 @@ class nn:
         :param layer_num: Layer up to which forward prop is to be calculated
         :return: Activations of layer layer_num
         """
-        self.cache = []
         if layer_num == int(len(self.parameters) / 2):
             return self.forward(net_input)
         else:
@@ -170,7 +169,7 @@ class nn:
         dA = None
         cost = self.cost_function
         if cost.lower() == 'crossentropyloss':
-            dA =  (np.divide(mapping, prediction) - np.divide(1 - mapping, 1 - prediction))
+            dA =  -(np.divide(mapping, prediction) - np.divide(1 - mapping, 1 - prediction))
         
         elif cost.lower() == 'mseloss':   
             dA =  (prediction-mapping)
@@ -193,7 +192,8 @@ class nn:
         if (self.activations[n_layer - 1]).lower() == "tanh":
             deact = 1- np.square(dA)
         if (self.activations[n_layer - 1]).lower() == "sigmoid":
-            deact = dA*(1-dA)
+            s = 1/(1+np.exp(-dZ+1e-10))
+            deact = s*(1-s)
         if self.activations[n_layer - 1] == None:
             deact = dZ
         
@@ -259,6 +259,7 @@ class nn:
         '''
 
         for i in range(epoch):
+            self.cache = []
             prediction = self.forward(input)
             loss_function = (self.cost_function).lower()
             loss = None
@@ -271,7 +272,7 @@ class nn:
                 print('Loss at ',i, ' ' ,loss)
             net.backward(prediction,mappings)
             
-            for l in range(len(self.parameters)/2):
+            for l in range(int(len(self.parameters)/2)):
                 self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
                 self.parameters['b'+str(l+1)] = self.parameters['b'+str(l+1)] -alpha*self.grads['db'+str(l+1)]
 
