@@ -25,6 +25,7 @@ class nn:
         self.cost_function = ''
         self.grads = {}
         self.initialize_parameters(layer_dimensions)
+        self.check_activations()
 
     def initialize_parameters(self, layer_dimensions):
         """
@@ -40,6 +41,17 @@ class nn:
                                 layer_dimensions[i - 1]) * 0.01
             )
             self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
+    
+    def check_activations(self):
+        '''
+        Checks if activations for all layers are present. Adds 'None' if no activations are provided for a particular layer.
+        
+        :returns: None
+        '''
+        num_layers = int(len(self.parameters)/2)
+        while len(self.activations) < num_layers :
+            self.activations.append(None)
+        
 
     @staticmethod
     def __linear_forward(A_prev, W, b):
@@ -69,11 +81,13 @@ class nn:
         """
         act_cache = [Z]
         act = None
-        if (self.activations[n_layer - 1]).lower() == "relu":
+        if (self.activations[n_layer - 1]) == None:
+            act = Z
+        elif (self.activations[n_layer - 1]).lower() == "relu":
             act = Z * (Z > 0)
-        if (self.activations[n_layer - 1]).lower() == "tanh":
+        elif (self.activations[n_layer - 1]).lower() == "tanh":
             act = np.tanh(Z)
-        if (self.activations[n_layer - 1]).lower() == "sigmoid":
+        elif (self.activations[n_layer - 1]).lower() == "sigmoid":
             act = 1 / (1 + np.exp(-Z))
 
         # assert(act!=None)
@@ -187,16 +201,16 @@ class nn:
         act_cache = self.cache[n_layer-1][1]
         dZ = act_cache[0]
         deact = None
-        if (self.activations[n_layer - 1]).lower() == "relu":
+        if self.activations[n_layer - 1] == None:
+            deact = 1
+        elif (self.activations[n_layer - 1]).lower() == "relu":
             deact = 1* (dZ>0)
-        if (self.activations[n_layer - 1]).lower() == "tanh":
+        elif (self.activations[n_layer - 1]).lower() == "tanh":
             deact = 1- np.square(dA)
-        if (self.activations[n_layer - 1]).lower() == "sigmoid":
+        elif (self.activations[n_layer - 1]).lower() == "sigmoid":
             s = 1/(1+np.exp(-dZ+1e-10))
             deact = s*(1-s)
-        if self.activations[n_layer - 1] == None:
-            deact = dZ
-        
+
         return deact
     
     def linear_backward(self,dA,n_layer):
