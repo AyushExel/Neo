@@ -12,7 +12,7 @@ def test_run():
 
     :return: None
     """
-    # test run:
+    # test run for binary classification problem:
     print('Running a binary classification test')
     #Generate sample binary classification data
     data = datasets.make_classification(n_samples=200,n_features=10,n_classes=2)
@@ -27,7 +27,15 @@ def test_run():
     accuracy = np.sum(output==Y)/200
     print('accuracy = ' ,accuracy*100)
 
-
+    #test run for regresssion problem:
+    #Generate sample regression data and add noise
+        
+    X = np.random.randn(1,200)
+    Y = X**2 
+    net = nn.nn([1,10,1],['relu'])
+    net.cost_function = 'MSELoss'
+    net.gradientDescent(X,Y,alpha=0.01,epoch=300,print_at=5)
+    
 
 
 if __name__ == "__main__":
