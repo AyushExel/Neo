@@ -89,6 +89,10 @@ class nn:
             act = np.tanh(Z)
         elif (self.activations[n_layer - 1]).lower() == "sigmoid":
             act = 1 / (1 + np.exp(-Z))
+        elif (self.activations[n_layer - 1]).lower() == "softmax":
+            act = np.exp(Z-np.max(Z))
+            act = act/(act.sum(axis=0)+1e-10)
+        
 
         # assert(act!=None)
 
@@ -183,7 +187,7 @@ class nn:
         dA = None
         cost = self.cost_function
         if cost.lower() == 'crossentropyloss':
-            dA =  -(np.divide(mapping, prediction) - np.divide(1 - mapping, 1 - prediction))
+            dA =  -(np.divide(mapping, prediction+1e-10) - np.divide(1 - mapping, 1 - prediction+1e-10))
         
         elif cost.lower() == 'mseloss':   
             dA =  (prediction-mapping)
@@ -207,7 +211,7 @@ class nn:
             deact = 1* (dZ>0)
         elif (self.activations[n_layer - 1]).lower() == "tanh":
             deact = 1- np.square(dA)
-        elif (self.activations[n_layer - 1]).lower() == "sigmoid":
+        elif (self.activations[n_layer - 1]).lower() == "sigmoid" or (self.activations[n_layer - 1]).lower()=='softmax':
             s = 1/(1+np.exp(-dZ+1e-10))
             deact = s*(1-s)
 
