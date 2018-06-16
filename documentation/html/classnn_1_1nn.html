@@ -78,6 +78,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad7304c7932970a07bf2869e97b79e0b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9821fed1369b4d709fe297fe9e07d97b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a9821fed1369b4d709fe297fe9e07d97b">initialize_parameters</a> (self, layer_dimensions)</td></tr>
 <tr class="separator:a9821fed1369b4d709fe297fe9e07d97b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ee3f3e18ebae83c904b3441ece897d"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a15ee3f3e18ebae83c904b3441ece897d">check_activations</a> (self)</td></tr>
+<tr class="separator:a15ee3f3e18ebae83c904b3441ece897d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae07002745b03901814d92ac66fe87781"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#ae07002745b03901814d92ac66fe87781">forward</a> (self, net_input)</td></tr>
 <tr class="separator:ae07002745b03901814d92ac66fe87781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3d2b61ed992dc615eacda8e75a61a2b"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#ac3d2b61ed992dc615eacda8e75a61a2b">forward_upto</a> (self, net_input, layer_num)</td></tr>
@@ -94,6 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0863e90359fa30486c7161cd31c5b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53a7beb698fe127ebb1f636fccbaa126"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a53a7beb698fe127ebb1f636fccbaa126">backward</a> (self, prediction, mappings)</td></tr>
 <tr class="separator:a53a7beb698fe127ebb1f636fccbaa126"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b8b6d7bc350ef775a61c8c6f82f5501"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a9b8b6d7bc350ef775a61c8c6f82f5501">gradientDescent</a> (self, input, mappings, alpha=0.001, epoch=100, print_at=5, prnt=True)</td></tr>
+<tr class="separator:a9b8b6d7bc350ef775a61c8c6f82f5501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -194,6 +198,27 @@ Public Attributes</h2></td></tr>
 :param prediction: Output of neural net
 :param mapping: Correct output of the function
 :return : None
+</pre> 
+</div>
+</div>
+<a id="a15ee3f3e18ebae83c904b3441ece897d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15ee3f3e18ebae83c904b3441ece897d">&#9670;&nbsp;</a></span>check_activations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.check_activations </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Checks if activations for all layers are present. Adds 'None' if no activations are provided for a particular layer.
+
+:returns: None
 </pre> 
 </div>
 </div>
@@ -344,6 +369,72 @@ Changes cost_function to appropriate value
 :param net_input: Contains the input to the Network
 :param layer_num: Layer up to which forward prop is to be calculated
 :return: Activations of layer layer_num
+</pre> 
+</div>
+</div>
+<a id="a9b8b6d7bc350ef775a61c8c6f82f5501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b8b6d7bc350ef775a61c8c6f82f5501">&#9670;&nbsp;</a></span>gradientDescent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def nn.nn.gradientDescent </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>mappings</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>0.001</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>epoch</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>print_at</em> = <code>5</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>prnt</em> = <code>True</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<pre class="fragment">Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
+
+:param input: input for neural net
+:param mapping: Correct output of the function
+:param alpha: Learning rate
+:param epoch: Number of iterations
+:param print_at: Print at multiples of 'print_at'
+:param prnt: Print if prnt=true
 </pre> 
 </div>
 </div>
