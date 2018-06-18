@@ -5,6 +5,7 @@ This file contains the tests for evaluating the functions in nn.py
 import sklearn.datasets as datasets
 import nn
 import numpy as np
+import pandas as pd
 
 def test_run():
     """
@@ -13,7 +14,9 @@ def test_run():
     :return: None
     """
     # test run for binary classification problem:
+    np.random.seed(3)
     print('Running a binary classification test')
+
     #Generate sample binary classification data
     data = datasets.make_classification(n_samples=200,n_features=10,n_classes=2)
     X= data[0].T
@@ -27,16 +30,18 @@ def test_run():
     accuracy = np.sum(output==Y)/200
     print('accuracy = ' ,accuracy*100)
 
+    
+    print('Running a regression test')
     #test run for regresssion problem:
-    #Generate sample regression data and add noise
-        
+    #Generate sample regression data
+    #       
     X = np.random.randn(1,200)
     Y = X**2 
     net = nn.nn([1,10,1],['relu'])
     net.cost_function = 'MSELoss'
     net.gradientDescent(X,Y,alpha=0.01,epoch=300,print_at=5)
-    
 
+   
 
 if __name__ == "__main__":
     test_run()
