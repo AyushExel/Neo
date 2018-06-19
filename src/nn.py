@@ -29,7 +29,7 @@ class nn:
 
     def initialize_parameters(self, layer_dimensions):
         """
-        Random initialization of weights of a network described by given layer
+        Xavier initialization of weights of a network described by given layer
         dimensions.
 
         :param layer_dimensions: Dimensions to layers of the network
@@ -37,8 +37,8 @@ class nn:
         """
         for i in range(1, len(layer_dimensions)):
             self.parameters["W" + str(i)] = (
-                np.random.randn(layer_dimensions[i],
-                                layer_dimensions[i - 1]) * 0.01
+                np.sqrt(2/layer_dimensions[i - 1])*np.random.randn(layer_dimensions[i],
+                                layer_dimensions[i - 1])
             )
             self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
     
