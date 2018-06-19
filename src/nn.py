@@ -274,6 +274,7 @@ class nn:
         :param input: input for neural net
         :param mapping: Correct output of the function
         :param alpha: Learning rate
+        :param lamb: Regularization parameter
         :param epoch: Number of iterations
         :param print_at: Print at multiples of 'print_at'
         :param prnt: Print if prnt=true

@@ -96,8 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a0863e90359fa30486c7161cd31c5b4e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53a7beb698fe127ebb1f636fccbaa126"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a53a7beb698fe127ebb1f636fccbaa126">backward</a> (self, prediction, mappings)</td></tr>
 <tr class="separator:a53a7beb698fe127ebb1f636fccbaa126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b8b6d7bc350ef775a61c8c6f82f5501"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#a9b8b6d7bc350ef775a61c8c6f82f5501">gradientDescent</a> (self, input, mappings, alpha=0.001, epoch=100, print_at=5, prnt=True)</td></tr>
-<tr class="separator:a9b8b6d7bc350ef775a61c8c6f82f5501"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8db320c8333323d55f67c1e77c0128e"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnn_1_1nn.html#ae8db320c8333323d55f67c1e77c0128e">gradientDescent</a> (self, input, mappings, alpha=0.001, lamb=None, epoch=100, print_at=5, prnt=True)</td></tr>
+<tr class="separator:ae8db320c8333323d55f67c1e77c0128e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -113,6 +113,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:adb4a96a154d03db3722022600e134c7f"><td class="memItemLeft" align="right" valign="top"><a id="adb4a96a154d03db3722022600e134c7f"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>cost_function</b></td></tr>
 <tr class="separator:adb4a96a154d03db3722022600e134c7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11943885141afc3a47049b9d2769fd1b"><td class="memItemLeft" align="right" valign="top"><a id="a11943885141afc3a47049b9d2769fd1b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>lamb</b></td></tr>
+<tr class="separator:a11943885141afc3a47049b9d2769fd1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50e9804c2895867c31833f877c7d5d60"><td class="memItemLeft" align="right" valign="top"><a id="a50e9804c2895867c31833f877c7d5d60"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>grads</b></td></tr>
 <tr class="separator:a50e9804c2895867c31833f877c7d5d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,6 +160,8 @@ Public Attributes</h2></td></tr>
 -Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
  is layer number.
 -activations contains the names of activation function used for that layer
+-cost_function  contains the name of cost function to be used
+-lamb contains the regularization hyper-parameter
 -grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
 </pre> 
 </div>
@@ -372,8 +377,8 @@ Changes cost_function to appropriate value
 </pre> 
 </div>
 </div>
-<a id="a9b8b6d7bc350ef775a61c8c6f82f5501"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9b8b6d7bc350ef775a61c8c6f82f5501">&#9670;&nbsp;</a></span>gradientDescent()</h2>
+<a id="ae8db320c8333323d55f67c1e77c0128e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8db320c8333323d55f67c1e77c0128e">&#9670;&nbsp;</a></span>gradientDescent()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -406,6 +411,12 @@ Changes cost_function to appropriate value
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>lamb</em> = <code>None</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>epoch</em> = <code>100</code>, </td>
         </tr>
         <tr>
@@ -432,6 +443,7 @@ Changes cost_function to appropriate value
 :param input: input for neural net
 :param mapping: Correct output of the function
 :param alpha: Learning rate
+:param lamb: Regularization parameter
 :param epoch: Number of iterations
 :param print_at: Print at multiples of 'print_at'
 :param prnt: Print if prnt=true
@@ -463,7 +475,7 @@ Changes cost_function to appropriate value
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">Random initialization of weights of a network described by given layer
+<pre class="fragment">Xavier initialization of weights of a network described by given layer
 dimensions.
 
 :param layer_dimensions: Dimensions to layers of the network
