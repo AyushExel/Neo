@@ -17,12 +17,15 @@ class nn:
         -Cache contains intermediate results as [[A[i-1],Wi,bi],[Zi]], where i
          is layer number.
         -activations contains the names of activation function used for that layer
+        -cost_function  contains the name of cost function to be used
+        -lamb contains the regularization hyper-parameter
         -grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
         """
         self.parameters = {}
         self.cache = []
         self.activations = activations
         self.cost_function = ''
+        self.lamb = None
         self.grads = {}
         self.initialize_parameters(layer_dimensions)
         self.check_activations()
@@ -231,7 +234,7 @@ class nn:
         A_prev,W,b = linear_cache
 
         dZ = dA*self.deactivate(dA,n_layer)
-        dW = (1/batch_size)*dZ.dot(A_prev.T)
+        dW = (1/batch_size)*dZ.dot(A_prev.T) + (self.lamb/batch_size)*self.parameters['W'+str(n_layer)]
         db = (1/batch_size)*np.sum(dZ,keepdims=True,axis=1)
         dA_prev = W.T.dot(dZ)
 
@@ -264,7 +267,7 @@ class nn:
             self.grads['db'+str(l+1)] = db
             self.grads['dA'+str(l)] = dA_prev
     
-    def gradientDescent(self,input,mappings,alpha=0.001,epoch=100,print_at=5,prnt=True):
+    def gradientDescent(self,input,mappings,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True):
         '''
         Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
 
@@ -280,12 +283,19 @@ class nn:
             self.cache = []
             prediction = self.forward(input)
             loss_function = (self.cost_function).lower()
-            loss = None
+            loss,regularization_cost = None,0
             if loss_function == 'mseloss':
                 loss = self.MSELoss(prediction,mappings)
             if loss_function == 'crossentropyloss':
                 loss = self.CrossEntropyLoss(prediction,mappings)
-            
+
+            if lamb != None:
+                for params in range(len(self.cache)):
+                    regularization_cost = regularization_cost + np.sum(np.square(self.parameters['W'+str(params+1)]))
+                regularization_cost = (lamb/(2*input.shape[1]))*regularization_cost
+                
+            loss = loss + regularization_cost
+            self.lamb = lamb
             if prnt and i%print_at==0 :
                 print('Loss at ',i, ' ' ,loss)
             self.backward(prediction,mappings)
