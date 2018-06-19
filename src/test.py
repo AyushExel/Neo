@@ -23,7 +23,7 @@ def test_run():
     Y = data[1].T
     net = nn.nn([10,20,1],['relu','sigmoid'])
     net.cost_function = 'CrossEntropyLoss'
-    net.gradientDescent(X,Y,alpha=0.07,epoch=200,print_at=5)
+    net.gradientDescent(X,Y,alpha=0.07,epoch=200,lamb = 0.05)
     output = net.forward(X)
     #Convert the probabilities to output values
     output = 1*(output>=0.5)
@@ -39,7 +39,7 @@ def test_run():
     Y = X**2 
     net = nn.nn([1,10,1],['relu'])
     net.cost_function = 'MSELoss'
-    net.gradientDescent(X,Y,alpha=0.01,epoch=300,print_at=5)
+    net.gradientDescent(X,Y,alpha=0.01,epoch=300,lamb=0.05)
 
    
 
