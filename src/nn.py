@@ -246,8 +246,6 @@ class nn:
         
         
 
-        
-
     def backward(self,prediction,mappings):
         '''
         Backward propagates through the network and stores useful calculations
@@ -304,6 +302,19 @@ class nn:
             for l in range(int(len(self.parameters)/2)):
                 self.parameters['W'+str(l+1)] = self.parameters['W'+str(l+1)] -alpha*self.grads['dW'+str(l+1)]
                 self.parameters['b'+str(l+1)] = self.parameters['b'+str(l+1)] -alpha*self.grads['db'+str(l+1)]
+
+    
+    def __str__(self):
+        '''
+        :Return: the network architecture and connectivity
+        '''
+        net_string = ""
+        for params in range(int(len(self.parameters)/2)):
+            weight = self.parameters['W'+str(params+1)]
+            net_string = net_string + " -> Linear(" + str(weight.shape[1]) +" , " + str(weight.shape[0]) + ")"
+            if self.activations[params] != None:
+                net_string = net_string + " -> " +  self.activations[params]
+        return net_string
 
 
     
