@@ -25,7 +25,7 @@ class nn:
         self.cache = []
         self.activations = activations
         self.cost_function = ''
-        self.lamb = None
+        self.lamb = 0
         self.grads = {}
         self.initialize_parameters(layer_dimensions)
         self.check_activations()
