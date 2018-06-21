@@ -6,6 +6,7 @@ import sklearn.datasets as datasets
 import nn
 import numpy as np
 import pandas as pd
+import optimizer
 
 def test_run():
     """
@@ -25,7 +26,8 @@ def test_run():
     net.cost_function = 'CrossEntropyLoss'
     print('net architecture : \n')
     print(net)
-    net.gradientDescent(X,Y,alpha=0.07,epoch=200,lamb = 0.05)
+    optim = optimizer.gradientDescentOptimizer
+    optim(X,Y,net,alpha=0.07,epoch=200,lamb=0.05)
     output = net.forward(X)
     #Convert the probabilities to output values
     output = 1*(output>=0.5)
@@ -43,8 +45,7 @@ def test_run():
     net.cost_function = 'MSELoss'
     print('net architecture : \n')
     print(net)
-
-    net.gradientDescent(X,Y,alpha=0.01,epoch=300,lamb=0.05)
+    optim(X,Y,net,alpha=0.01,epoch=300,lamb=0.05)
 
    
 
