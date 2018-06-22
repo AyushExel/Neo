@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['mseloss',['MSELoss',['../classnn_1_1nn.html#ae74a0f21e8722ea82a0f94135a81a348',1,'nn::nn']]]
+  ['output_5fbackward',['output_backward',['../classnn_1_1nn.html#afa7d1462872fae95fe71f27ed00bf7ae',1,'nn::nn']]]
 ];

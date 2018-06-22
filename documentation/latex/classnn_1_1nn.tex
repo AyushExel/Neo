@@ -25,7 +25,7 @@ def \hyperlink{classnn_1_1nn_a0863e90359fa30486c7161cd31c5b4e7}{linear\+\_\+back
 \item 
 def \hyperlink{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}{backward} (self, prediction, mappings)
 \item 
-def \hyperlink{classnn_1_1nn_ae8db320c8333323d55f67c1e77c0128e}{gradient\+Descent} (self, input, mappings, alpha=0.\+001, lamb=None, epoch=100, print\+\_\+at=5, prnt=True)
+def \hyperlink{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}{\+\_\+\+\_\+str\+\_\+\+\_\+} (self)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -72,7 +72,15 @@ def \hyperlink{classnn_1_1nn_ae8db320c8333323d55f67c1e77c0128e}{gradient\+Descen
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}\label{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}} 
+\mbox{\Hypertarget{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}\label{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}} 
+\index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+str\+\_\+\+\_\+()}{\_\_str\_\_()}}
+{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+str\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}:Return: the network architecture and connectivity
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}\label{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}} 
 \index{nn\+::nn@{nn\+::nn}!backward@{backward}}
 \index{backward@{backward}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{backward()}{backward()}}
@@ -141,22 +149,6 @@ Changes cost_function to appropriate value
 :param net_input: Contains the input to the Network
 :param layer_num: Layer up to which forward prop is to be calculated
 :return: Activations of layer layer_num
-\end{DoxyVerb}
- \mbox{\Hypertarget{classnn_1_1nn_ae8db320c8333323d55f67c1e77c0128e}\label{classnn_1_1nn_ae8db320c8333323d55f67c1e77c0128e}} 
-\index{nn\+::nn@{nn\+::nn}!gradient\+Descent@{gradient\+Descent}}
-\index{gradient\+Descent@{gradient\+Descent}!nn\+::nn@{nn\+::nn}}
-\subsubsection{\texorpdfstring{gradient\+Descent()}{gradientDescent()}}
-{\footnotesize\ttfamily def nn.\+nn.\+gradient\+Descent (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily None},  }\item[{}]{epoch = {\ttfamily 100},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True} }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
-
-:param input: input for neural net
-:param mapping: Correct output of the function
-:param alpha: Learning rate
-:param lamb: Regularization parameter
-:param epoch: Number of iterations
-:param print_at: Print at multiples of 'print_at'
-:param prnt: Print if prnt=true
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}\label{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}} 
 \index{nn\+::nn@{nn\+::nn}!initialize\+\_\+parameters@{initialize\+\_\+parameters}}

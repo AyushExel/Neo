@@ -1,9 +1,9 @@
 var indexSectionsWithContent =
 {
-  0: "_bcdfgilmnot",
+  0: "_bcdfilmnot",
   1: "n",
-  2: "nt",
-  3: "_bcdfgilmot"
+  2: "not",
+  3: "_bcdfilmot"
 };
 
 var indexSectionNames =
