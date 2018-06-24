@@ -1,13 +1,13 @@
-'''
-This class contains various optimizer functions in one place for better and modular understanding of overall library
-'''
+"""
+This class contains various optimizer functions in one place for better and modular understanding of overall library.
+"""
 import nn
 import numpy as np
 
 class optimizer:
     @staticmethod
-    def gradientDescentOptimizer(input,mappings,net:nn.nn,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True):
-        '''
+    def gradientDescentOptimizer(input,mappings,net,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True):
+        """
         Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
 
         :param input  : input for neural net
@@ -18,7 +18,7 @@ class optimizer:
         :param epoch  : Number of iterations
         :param print_at: Print at multiples of 'print_at'
         :param prnt   : Print if prnt=true
-        '''
+        """
 
         for i in range(epoch):
             net.cache = []
@@ -46,7 +46,7 @@ class optimizer:
                 net.parameters['b'+str(l+1)] = net.parameters['b'+str(l+1)] -alpha*net.grads['db'+str(l+1)]
 
     @staticmethod
-    def SGDOptimizer(input,mappings,net:nn.nn,mini_batch_size=64,alpha=0.001,lamb=None, epoch=5,print_at=5,prnt=True):
+    def SGDOptimizer(input,mappings,net,mini_batch_size=64,alpha=0.001,lamb=None, epoch=5,print_at=5,prnt=True):
         '''
         Performs Stochaitic gradient descent on the given network
         -Generates mini batches of given size using random permutation
