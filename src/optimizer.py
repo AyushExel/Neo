@@ -1,12 +1,13 @@
 """
-This class contains various optimizer functions in one place for better and modular understanding of overall library.
+This class contains various optimizer and helper functions in one place for better and modular understanding of overall 
+library.
 """
 import nn
 import numpy as np
 
 class optimizer:
     @staticmethod
-    def gradientDescentOptimizer(input,mappings,net,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True):
+    def gradientDescentOptimizer(input,mappings,net,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True,update=True):
         """
         Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
 
@@ -39,14 +40,13 @@ class optimizer:
             net.lamb = lamb
             if prnt and i%print_at==0 :
                 print('Loss at ',i, ' ' ,loss)
+
             net.backward(prediction,mappings)
-            
-            for l in range(int(len(net.parameters)/2)):
-                net.parameters['W'+str(l+1)] = net.parameters['W'+str(l+1)] -alpha*net.grads['dW'+str(l+1)]
-                net.parameters['b'+str(l+1)] = net.parameters['b'+str(l+1)] -alpha*net.grads['db'+str(l+1)]
+            if update:
+                net.parameters = optimizer.update_params(net.parameters,net.grads,alpha)
 
     @staticmethod
-    def SGDOptimizer(input,mappings,net,mini_batch_size=64,alpha=0.001,lamb=None, epoch=5,print_at=5,prnt=True):
+    def SGDOptimizer(input,mappings,net,mini_batch_size=64,alpha=0.001,lamb=None,momentum=None,epoch=5,print_at=5,prnt=True):
         '''
         Performs Stochaitic gradient descent on the given network
         -Generates mini batches of given size using random permutation
@@ -58,9 +58,12 @@ class optimizer:
         :param batch_size: Batch size to be used witch SGD
         :param alpha  : Learning rate
         :param lamb   : Regularization parameter
+        :param momentum: Momentum Hyper parameter
         :param epoch  : Number of iterations
         :param print_at: Print at multiples of 'print_at'
         :param prnt   : Print if prnt=true
+
+        :return : None
         '''
         batch_size = input.shape[1]
         mini_batches = []
@@ -85,6 +88,14 @@ class optimizer:
             mini_batch = (mini_batch_input,mini_batch_mappings)
             mini_batches.append(mini_batch)
         
+        #Initialize momentum velocity
+        velocity = {}
+        if momentum != None:
+            for i in range(len(net.parameters)):
+                velocity['dW'+str(i+1)] = np.zeros(net.parameters['W'+str(i+1)].shape)
+                velocity['db'+str(i+1)] = np.zeros(net.parameters['b'+str(i+1)].shape)
+        
+
         for i in range(1,epoch+1):
             for batches in range(len(mini_batches)):
                 optimizer.gradientDescentOptimizer(input,mappings,net,alpha,lamb,epoch=1,prnt=False)
@@ -98,6 +109,24 @@ class optimizer:
             
             if i%print_at == 0:
                 print('Loss at ', i , ' ' , loss)
+    
+    @staticmethod
+    def update_params(params,updation,learning_rate):
+        '''
+        Updates the parameters using gradients and learning rate provided
+        
+        :param params   : Parameters of the network
+        :param updation    : updation valcues calculated using appropriate algorithms
+        :param learning_rate: Learning rate for the updation of values in params
+
+        :return : Updated params 
+        '''
+        
+        for i in range(int(len(params)/2)):
+            params['W' + str(i+1)] = params['W' + str(i+1)] - learning_rate*updation['dW' + str(i+1)]
+            params['b' + str(i+1)] = params['b' + str(i+1)] - learning_rate*updation['db' + str(i+1)]
+        
+        return params
         
     
 
