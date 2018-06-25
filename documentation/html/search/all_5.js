@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['initialize_5fparameters',['initialize_parameters',['../classnn_1_1nn.html#a9821fed1369b4d709fe297fe9e07d97b',1,'nn::nn']]]
+  ['forward',['forward',['../classnn_1_1nn.html#ae07002745b03901814d92ac66fe87781',1,'nn::nn']]],
+  ['forward_5fupto',['forward_upto',['../classnn_1_1nn.html#ac3d2b61ed992dc615eacda8e75a61a2b',1,'nn::nn']]]
 ];

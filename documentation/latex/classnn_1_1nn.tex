@@ -3,7 +3,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, layer\+\_\+dimensions, activations)
+def \hyperlink{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, layer\+\_\+dimensions, \hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations})
 \item 
 def \hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+parameters} (self, layer\+\_\+dimensions)
 \item 
@@ -30,23 +30,27 @@ def \hyperlink{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}{\+\_\+\+\_\+str\
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}\label{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}} 
-{\bfseries parameters}
+\hyperlink{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}{parameters}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}\label{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}} 
-{\bfseries cache}
+\hyperlink{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}{cache}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}\label{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}} 
-{\bfseries activations}
+\hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}\label{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}} 
-{\bfseries cost\+\_\+function}
+\hyperlink{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}{cost\+\_\+function}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}\label{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}} 
-{\bfseries lamb}
+\hyperlink{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}{lamb}
 \item 
-\mbox{\Hypertarget{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}\label{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}} 
-{\bfseries grads}
+\hyperlink{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}{grads}
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classnn_1_1nn_a1cefed6bf4fd61d437e68c901a15fda2}{\+\_\+\+\_\+activate} (self, Z, n\+\_\+layer=1)
+\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}{\+\_\+\+\_\+linear\+\_\+forward} (A\+\_\+prev, W, b)
 \end{DoxyCompactItemize}
 
 
@@ -72,7 +76,36 @@ def \hyperlink{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}{\+\_\+\+\_\+str\
  
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}\label{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}} 
+\mbox{\Hypertarget{classnn_1_1nn_a1cefed6bf4fd61d437e68c901a15fda2}\label{classnn_1_1nn_a1cefed6bf4fd61d437e68c901a15fda2}} 
+\index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+activate@{\+\_\+\+\_\+activate}}
+\index{\+\_\+\+\_\+activate@{\+\_\+\+\_\+activate}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+activate()}{\_\_activate()}}
+{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+activate (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{Z,  }\item[{}]{n\+\_\+layer = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\begin{DoxyVerb}Activate the given layer(Z) using the activation function specified by
+'type'.
+
+Note: This function treats 1 as starting index!
+      First layer's index is 1.
+
+:param Z: Layer to activate
+:param n_layer: Layer's index
+:return: Activated layer and activation cache
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}\label{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}} 
+\index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+linear\+\_\+forward@{\+\_\+\+\_\+linear\+\_\+forward}}
+\index{\+\_\+\+\_\+linear\+\_\+forward@{\+\_\+\+\_\+linear\+\_\+forward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+linear\+\_\+forward()}{\_\_linear\_forward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+linear\+\_\+forward (\begin{DoxyParamCaption}\item[{}]{A\+\_\+prev,  }\item[{}]{W,  }\item[{}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\begin{DoxyVerb}Linear forward to the current layer using previous activations.
+
+:param A_prev: Previous Layer's activation
+:param W: Weights for current layer
+:param b: Biases for current layer
+:return: Linear cache and current calculated layer
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}\label{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}} 
 \index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+str\+\_\+\+\_\+@{\+\_\+\+\_\+str\+\_\+\+\_\+}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+str\+\_\+\+\_\+()}{\_\_str\_\_()}}
@@ -180,7 +213,8 @@ dimensions.
 \subsubsection{\texorpdfstring{M\+S\+E\+Loss()}{MSELoss()}}
 {\footnotesize\ttfamily def nn.\+nn.\+M\+S\+E\+Loss (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{prediction,  }\item[{}]{mappings }\end{DoxyParamCaption})}
 
-\begin{DoxyVerb}Calculates the Mean Squared error between output of the network and the real mappings of a function.
+\begin{DoxyVerb}Calculates the Mean Squared error with regularization cost(if provided) between output of the network and the real
+mappings of a function.
 Changes cost_function to appropriate value
 
 :param prediction: Output of the neural net
@@ -202,6 +236,45 @@ Changes cost_function to appropriate value
 \end{DoxyVerb}
  
 
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}\label{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}} 
+\index{nn\+::nn@{nn\+::nn}!activations@{activations}}
+\index{activations@{activations}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{activations}{activations}}
+{\footnotesize\ttfamily nn.\+nn.\+activations}
+
+\mbox{\Hypertarget{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}\label{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}} 
+\index{nn\+::nn@{nn\+::nn}!cache@{cache}}
+\index{cache@{cache}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{cache}{cache}}
+{\footnotesize\ttfamily nn.\+nn.\+cache}
+
+\mbox{\Hypertarget{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}\label{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}} 
+\index{nn\+::nn@{nn\+::nn}!cost\+\_\+function@{cost\+\_\+function}}
+\index{cost\+\_\+function@{cost\+\_\+function}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{cost\+\_\+function}{cost\_function}}
+{\footnotesize\ttfamily nn.\+nn.\+cost\+\_\+function}
+
+\mbox{\Hypertarget{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}\label{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}} 
+\index{nn\+::nn@{nn\+::nn}!grads@{grads}}
+\index{grads@{grads}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{grads}{grads}}
+{\footnotesize\ttfamily nn.\+nn.\+grads}
+
+\mbox{\Hypertarget{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}\label{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}} 
+\index{nn\+::nn@{nn\+::nn}!lamb@{lamb}}
+\index{lamb@{lamb}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{lamb}{lamb}}
+{\footnotesize\ttfamily nn.\+nn.\+lamb}
+
+\mbox{\Hypertarget{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}\label{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}} 
+\index{nn\+::nn@{nn\+::nn}!parameters@{parameters}}
+\index{parameters@{parameters}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{parameters}{parameters}}
+{\footnotesize\ttfamily nn.\+nn.\+parameters}
+
+
+
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/nn.\+py\end{DoxyCompactItemize}
+src/\hyperlink{nn_8py}{nn.\+py}\end{DoxyCompactItemize}

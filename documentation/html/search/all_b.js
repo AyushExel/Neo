@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['test',['test',['../namespacetest.html',1,'']]],
-  ['test_5frun',['test_run',['../namespacetest.html#ae33228479f5f6d2957b7e3b5177e1328',1,'test']]]
+  ['optimizer',['optimizer',['../classoptimizer_1_1optimizer.html',1,'optimizer.optimizer'],['../namespaceoptimizer.html',1,'optimizer']]],
+  ['optimizer_2epy',['optimizer.py',['../optimizer_8py.html',1,'']]],
+  ['output_5fbackward',['output_backward',['../classnn_1_1nn.html#afa7d1462872fae95fe71f27ed00bf7ae',1,'nn::nn']]]
 ];
