@@ -20,6 +20,7 @@ class optimizer:
         :param print_at: Print at multiples of 'print_at'
         :param prnt   : Print if prnt=true
         """
+        net.lamb = lamb
 
         for i in range(epoch):
             net.cache = []
@@ -30,14 +31,7 @@ class optimizer:
                 loss = net.MSELoss(prediction,mappings)
             if loss_function == 'crossentropyloss':
                 loss = net.CrossEntropyLoss(prediction,mappings)
-
-            if lamb != None:
-                for params in range(len(net.cache)):
-                    regularization_cost = regularization_cost + np.sum(np.square(net.parameters['W'+str(params+1)]))
-                regularization_cost = (lamb/(2*input.shape[1]))*regularization_cost
                 
-            loss = loss + regularization_cost
-            net.lamb = lamb
             if prnt and i%print_at==0 :
                 print('Loss at ',i, ' ' ,loss)
 
@@ -91,14 +85,24 @@ class optimizer:
         #Initialize momentum velocity
         velocity = {}
         if momentum != None:
-            for i in range(len(net.parameters)):
+            for i in range(int(len(net.parameters)/2)):
                 velocity['dW'+str(i+1)] = np.zeros(net.parameters['W'+str(i+1)].shape)
                 velocity['db'+str(i+1)] = np.zeros(net.parameters['b'+str(i+1)].shape)
         
 
         for i in range(1,epoch+1):
+
             for batches in range(len(mini_batches)):
-                optimizer.gradientDescentOptimizer(input,mappings,net,alpha,lamb,epoch=1,prnt=False)
+
+                if momentum != None:
+                    optimizer.gradientDescentOptimizer(input,mappings,net,alpha,lamb,epoch=1,prnt=False,update=False)
+                    for j in range(int(len(net.parameters)/2)):
+                        velocity['dW' + str(j+1)] = momentum*velocity['dW'+str(j+1)] + (1-momentum)*net.grads['dW'+str(j+1)]
+                        velocity['db' + str(j+1)] = momentum*velocity['db'+str(j+1)] + (1-momentum)*net.grads['db'+str(j+1)]
+                    net.parameters = optimizer.update_params(net.parameters,velocity,alpha)
+                else:
+                    optimizer.gradientDescentOptimizer(input,mappings,net,alpha,lamb,epoch=1,prnt=False)
+
             prediction = net.forward(input)
             loss = None 
             loss_function = net.cost_function.lower()
