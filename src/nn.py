@@ -108,6 +108,7 @@ class nn:
         :param net_input: Contains the input to the Network
         :return: Output of the network
         """
+        self.cache = [] 
         A = net_input
 
         for i in range(1, int(len(self.parameters) / 2)):
@@ -154,7 +155,8 @@ class nn:
     
     def MSELoss(self,prediction,mappings):
         '''
-        Calculates the Mean Squared error between output of the network and the real mappings of a function.
+        Calculates the Mean Squared error with regularization cost(if provided) between output of the network and the real
+        mappings of a function.
         Changes cost_function to appropriate value
 
         :param prediction: Output of the neural net
@@ -163,8 +165,15 @@ class nn:
         '''
 
         self.cost_function = 'MSELoss'
-        return np.square(prediction-mappings).mean()/2
-    
+        loss = np.square(prediction-mappings).mean()/2
+        regularization_cost = 0
+        if self.lamb != 0:
+            for params in range(len(self.cache)):  
+                regularization_cost = regularization_cost + np.sum(np.square(self.parameters['W'+str(params+1)]))
+        regularization_cost = (self.lamb/(2*prediction.shape[1]))*regularization_cost
+        
+        return loss + regularization_cost
+
     def CrossEntropyLoss(self,prediction,mappings):
         '''
         Calculates the cross entropy loss between output of the network and the real mappings of a function
@@ -176,7 +185,14 @@ class nn:
         '''
         epsilon = 1e-8
         self.cost_function = 'CrossEntropyLoss'
-        return -(1/prediction.shape[1])*np.sum( mappings*np.log(prediction+epsilon) + (1-mappings)*np.log(1-prediction+epsilon) )
+        loss = -(1/prediction.shape[1])*np.sum( mappings*np.log(prediction+epsilon) + (1-mappings)*np.log(1-prediction+epsilon) )
+        regularization_cost = 0
+        if self.lamb != 0:
+            for params in range(len(self.cache)):
+                regularization_cost = regularization_cost + np.sum(np.square(self.parameters['W'+str(params+1)]))
+        regularization_cost = (self.lamb/(2*prediction.shape[1]))*regularization_cost
+
+        return loss + regularization_cost
     
     def output_backward(self,prediction,mapping):
         '''
