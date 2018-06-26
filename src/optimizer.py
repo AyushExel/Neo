@@ -7,7 +7,7 @@ import numpy as np
 
 class optimizer:
     @staticmethod
-    def gradientDescentOptimizer(input,mappings,net,alpha=0.001,lamb=None, epoch=100,print_at=5,prnt=True,update=True):
+    def gradientDescentOptimizer(input,mappings,net,alpha=0.001,lamb=0, epoch=100,print_at=5,prnt=True,update=True):
         """
         Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
 
@@ -40,7 +40,7 @@ class optimizer:
                 net.parameters = optimizer.update_params(net.parameters,net.grads,alpha)
 
     @staticmethod
-    def SGDOptimizer(input,mappings,net,mini_batch_size=64,alpha=0.001,lamb=None,momentum=None,epoch=5,print_at=5,prnt=True):
+    def SGDOptimizer(input,mappings,net,mini_batch_size=64,alpha=0.001,lamb=0,momentum=None,epoch=5,print_at=5,prnt=True):
         '''
         Performs Stochaitic gradient descent on the given network
         -Generates mini batches of given size using random permutation
