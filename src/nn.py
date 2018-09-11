@@ -20,6 +20,7 @@ class nn:
         -cost_function  contains the name of cost function to be used
         -lamb contains the regularization hyper-parameter
         -grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
+        -layer_type contains the info about the type of layer( fc, conv etc)
         """
         self.parameters = {}
         self.cache = []
@@ -27,8 +28,11 @@ class nn:
         self.cost_function = ''
         self.lamb = 0
         self.grads = {}
+        self.layer_type = []
+        
         self.initialize_parameters(layer_dimensions)
         self.check_activations()
+ 
 
     def initialize_parameters(self, layer_dimensions):
         """
@@ -44,6 +48,7 @@ class nn:
                                 layer_dimensions[i - 1])
             )
             self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
+            self.layer_type.append('fc')
     
     def check_activations(self):
         '''
@@ -114,9 +119,11 @@ class nn:
         for i in range(1, int(len(self.parameters) / 2)):
             W = self.parameters["W" + str(i)]
             b = self.parameters["b" + str(i)]
-            Z, linear_cache = self.__linear_forward(A, W, b)
-
+            Z = linear_cache = None
+            if self.layer_type[i] == 'fc':
+                Z, linear_cache = self.__linear_forward(A, W, b)
             A, act_cache = self.__activate(Z, i)
+
             self.cache.append([linear_cache, act_cache])
 
         # For Last Layer
@@ -276,12 +283,17 @@ class nn:
         self.grads['dW'+str(layer_num)],self.grads['db'+str(layer_num)],self.grads['dA'+str(layer_num-1)] = self.linear_backward(doutput,layer_num)
 
         for l in reversed(range(layer_num-1)):
-            dW,db,dA_prev = self.linear_backward(self.grads['dA'+str(l+1)],l+1)
+
+            if self.layer_type[l] == 'fc':
+                dW,db,dA_prev = self.linear_backward(self.grads['dA'+str(l+1)],l+1)
+
             self.grads['dW'+str(l+1)] = dW
             self.grads['db'+str(l+1)] = db
             self.grads['dA'+str(l)] = dA_prev
     
    
+
+
     def __str__(self):
         '''
         :Return: the network architecture and connectivity
@@ -294,11 +306,6 @@ class nn:
                 net_string = net_string + " -> " +  self.activations[params]
         return net_string
 
-
-    
-
-        
-        
             
 
 
