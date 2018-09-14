@@ -291,7 +291,54 @@ class nn:
             self.grads['db'+str(l+1)] = db
             self.grads['dA'+str(l)] = dA_prev
     
+    @staticmethod
+    def zero_pad(self,imgData,pad):
+        '''
+        Provides zero padding to the multi channel image data provided
+        :param imgData: image data to pad
+        :param pad    : amount of padding per layer
+
+        :return : image with desired padding
+        '''
+        X = np.pad(imgData,((0,0),(pad,pad),(pad,pad),(0,0)),'constant',constant_values = 0)
+        return X
+
+    
    
+    def conv_single(self,a_prev_slice,W,b):
+        '''
+        Apply convolution using W and b as filter on the activation slice of the previous layer
+
+        :param a_prev_slice: a slice of previous activated layer
+        :param W           : Filter
+        :param b           : bais
+        :return Z: scalar value resultant of the convolution
+        '''
+        Z  = np.multiply(a_prev_slice,W)
+        Z = np.sum(Z)
+        Z = Z + float(b) #to convert the value to float from matrix type
+        return Z
+    
+    def conv_forward(self,A_prev,W,b,hyper_param):
+        '''
+        Implements forward pass of convolutional layer.
+        
+        :param A_prev:activations of previous layer
+        :param W: Filter
+        :param b: bias
+        :param hyper_param  : list of hyperparameters, stride and padding
+
+        :return: Z,cache
+        '''
+        m,h_prev,w_prev,nc_prev = A_prev.shape
+        f,f,nc_prev,nc = W.shape
+        stride,pad = hyper_param
+        #comupte the dimensions of the result using convolution formula => w/h = (w/h(prev) -f +2*pad)/stride +1
+        n_h = int(np.floor((h_prev-f+2*pad)/2)) +1
+        n_w = int(np.floor((w_prev-f+2*pad)/2)) +1
+        
+        Z = np.zeros(m,n_h,n_w,nc)
+        A_prev_pad = self.zero_pad(A_prev,pad)
 
 
     def __str__(self):
@@ -307,10 +354,4 @@ class nn:
         return net_string
 
             
-
-
-        
-    
-
-
 
