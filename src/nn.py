@@ -292,7 +292,7 @@ class nn:
             self.grads['dA'+str(l)] = dA_prev
     
     @staticmethod
-    def zero_pad(self,imgData,pad):
+    def zero_pad(imgData,pad):
         '''
         Provides zero padding to the multi channel image data provided
         :param imgData: image data to pad
@@ -337,8 +337,25 @@ class nn:
         n_h = int(np.floor((h_prev-f+2*pad)/2)) +1
         n_w = int(np.floor((w_prev-f+2*pad)/2)) +1
         
-        Z = np.zeros(m,n_h,n_w,nc)
+        Z = np.zeros((m,n_h,n_w,nc))
         A_prev_pad = self.zero_pad(A_prev,pad)
+        for i in range(m):
+            prev_pad = A_prev_pad[i]
+
+            for h in range(n_h):
+                for w in range(n_w):
+                    for c in range(nc):
+                        vstart = h*stride
+                        vend = vstart + f
+                        hstart = w*stride
+                        hend = hstart+f 
+
+                        prev_slice = prev_pad[vstart:vend,hstart:hend,:]
+                        Z[i,h,w,c] = self.conv_single(prev_slice,W[:,:,:,c],b[:,:,:,c])
+        
+        cache = (A_prev,W,b,hyper_param)
+
+        return Z,cache
 
 
     def __str__(self):
@@ -354,4 +371,15 @@ class nn:
         return net_string
 
             
+net = nn([100],['relu'])
+np.random.seed(1)
+A_prev = np.random.randn(10,4,4,3)
+W = np.random.randn(2,2,3,8)
+b = np.random.randn(1,1,1,8)
+hparameters = {"pad" : 2,
+               "stride": 2}
 
+Z, cache_conv = net.conv_forward(A_prev, W, b, hyper_param=[2,2])
+print("Z's mean =", np.mean(Z))
+print("Z[3,2,1] =", Z[3,2,1])
+print("cache_conv[0][1][2][3] =", cache_conv[0][1][2][3])
