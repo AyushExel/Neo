@@ -345,17 +345,55 @@ class nn:
             for h in range(n_h):
                 for w in range(n_w):
                     for c in range(nc):
-                        vstart = h*stride
-                        vend = vstart + f
-                        hstart = w*stride
-                        hend = hstart+f 
+                        vertstart = h*stride
+                        vertend = vertstart + f
+                        horstart = w*stride
+                        horend = horstart+f 
 
-                        prev_slice = prev_pad[vstart:vend,hstart:hend,:]
+                        prev_slice = prev_pad[vertstart:vertend,horstart:horend,:]
                         Z[i,h,w,c] = self.conv_single(prev_slice,W[:,:,:,c],b[:,:,:,c])
         
         cache = (A_prev,W,b,hyper_param)
 
         return Z,cache
+
+    def pool_forward(self,A_prev,f,stride,type='max'):
+        '''
+        To enable max and average pooling during the forward pass
+
+        :param A_prev: Activation of previous layer
+        :param   f   : filter size
+        :param stride: size of each stride
+        :param type  : type of pooling, max or average
+        
+        :returns A,cache:
+        '''
+        #Calculate the resultant dimensions:
+        n_h = int(1 + (A_prev.shape[1] - f) / stride)
+        n_w = int(1 + (A_prev.shape[2] - f) / stride)
+        n_c = A_prev.shape[3]
+
+        A = np.zeros((A_prev.shape[0],n_h,n_w,n_c))
+
+        for i in range(A.shape[0]):
+            for h in range(n_h):
+                for w in range(n_w):
+                    for c in range(n_c):
+                        vertstart = h*stride
+                        vertend = vertstart + f
+                        horstart = w*stride
+                        horend = horstart+f 
+
+                        a_prev_slice = A_prev[i,vertstart:vertend,horstart:horend,c]
+
+                        if type == 'max':
+                            A[i,h,w,c] = np.max(a_prev_slice)
+                        elif type == 'avg':
+                            A[i,h,w,c] = np.mean(a_prev_slice)
+        
+        cache = (A_prev,[f,stride])
+        return A,cache
+
 
 
     def __str__(self):
@@ -370,16 +408,4 @@ class nn:
                 net_string = net_string + " -> " +  self.activations[params]
         return net_string
 
-            
-net = nn([100],['relu'])
-np.random.seed(1)
-A_prev = np.random.randn(10,4,4,3)
-W = np.random.randn(2,2,3,8)
-b = np.random.randn(1,1,1,8)
-hparameters = {"pad" : 2,
-               "stride": 2}
 
-Z, cache_conv = net.conv_forward(A_prev, W, b, hyper_param=[2,2])
-print("Z's mean =", np.mean(Z))
-print("Z[3,2,1] =", Z[3,2,1])
-print("cache_conv[0][1][2][3] =", cache_conv[0][1][2][3])
