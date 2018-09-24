@@ -409,3 +409,16 @@ class nn:
         return net_string
 
 
+
+np.random.seed(1)
+A_prev = np.random.randn(2, 4, 4, 3)
+stride =  2
+f = 3
+net = nn([10],['relu'])
+A, cache = net.pool_forward(A_prev, f,stride,'max')
+print("mode = max")
+print("A =", A)
+print()
+A, cache = net.pool_forward(A_prev, f,stride, "avg")
+print("mode = average")
+print("A =", A)
