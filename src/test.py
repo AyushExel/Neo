@@ -5,7 +5,6 @@ This file contains the tests for evaluating the functions in nn.py
 import sklearn.datasets as datasets
 import nn
 import numpy as np
-import pandas as pd
 from optimizer import optimizer
 
 def test_run():

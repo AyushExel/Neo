@@ -4,10 +4,10 @@ Contains all activation and loss functions some other utility function.
 """
 
 import numpy as np
-
+import pdb
 
 class nn:
-    def __init__(self, layer_dimensions, activations):
+    def __init__(self, layer_dimensions=[], activations=[]):
         """
         Initializes networks's weights and other useful variables.
 
@@ -28,8 +28,8 @@ class nn:
         self.cost_function = ''
         self.lamb = 0
         self.grads = {}
-        self.layer_type = []
-        
+        self.layer_type = ['']
+        self.hyperparam = {}
         self.initialize_parameters(layer_dimensions)
         self.check_activations()
  
@@ -42,14 +42,26 @@ class nn:
         :param layer_dimensions: Dimensions to layers of the network
         :return: None
         """
+        num_layers = int(len(self.parameters)/2)
+
         for i in range(1, len(layer_dimensions)):
-            self.parameters["W" + str(i)] = (
+            self.parameters["W" + str(num_layers+i)] = (
                 np.sqrt(2/layer_dimensions[i - 1])*np.random.randn(layer_dimensions[i],
                                 layer_dimensions[i - 1])
             )
-            self.parameters["b" + str(i)] = np.zeros((layer_dimensions[i], 1))
+            self.parameters["b" + str(i+num_layers)] = np.zeros((layer_dimensions[i], 1))
             self.layer_type.append('fc')
-    
+
+    def add_fcn(self,dims,activations):
+        '''
+        Add fully connected layers in between the network
+        :param dims:list describing dimensions of fully connected networks
+        :param activations: activations of each layer
+        '''
+        self.initialize_parameters(dims)
+        for i in activations:
+            self.activations.append(i)
+
     def check_activations(self):
         '''
         Checks if activations for all layers are present. Adds 'None' if no activations are provided for a particular layer.
@@ -115,14 +127,22 @@ class nn:
         """
         self.cache = [] 
         A = net_input
-
         for i in range(1, int(len(self.parameters) / 2)):
             W = self.parameters["W" + str(i)]
             b = self.parameters["b" + str(i)]
             Z = linear_cache = None
             if self.layer_type[i] == 'fc':
                 Z, linear_cache = self.__linear_forward(A, W, b)
+            elif self.layer_type[i] == 'conv':
+                hyperparam = self.hyperparam[i]
+                Z , linear_cache = self.conv_forward(A,W,b,hyperparam)
+
+                #flatten the output if the next layer is fully connected
             A, act_cache = self.__activate(Z, i)
+            if  self.layer_type[i]=='conv':
+                if  self.layer_type[i+1] == 'fc':
+                    A = A.reshape((A.shape[1]*A.shape[2]*A.shape[3],A.shape[0]))
+ 
 
             self.cache.append([linear_cache, act_cache])
 
@@ -136,8 +156,10 @@ class nn:
         else:
             A = Z
             self.cache.append([linear_cache, [None]])
-
+        
         return A
+    '''
+    !!!!Only works for fully connected networks.!!!!!
 
     def forward_upto(self, net_input, layer_num):
         """
@@ -159,7 +181,8 @@ class nn:
                 A, act_cache = self.__activate(Z, i)
                 self.cache.append([linear_cache, act_cache])
             return A
-    
+    ''' 
+
     def MSELoss(self,prediction,mappings):
         '''
         Calculates the Mean Squared error with regularization cost(if provided) between output of the network and the real
@@ -279,17 +302,23 @@ class nn:
         '''
         layer_num = len(self.cache)
         doutput = self.output_backward(prediction,mappings)
-
         self.grads['dW'+str(layer_num)],self.grads['db'+str(layer_num)],self.grads['dA'+str(layer_num-1)] = self.linear_backward(doutput,layer_num)
-
+        temp = self.layer_type
+        self.layer_type = self.layer_type[1:]
+        
         for l in reversed(range(layer_num-1)):
-
+            dW,db,dA_prev = None,None,None
             if self.layer_type[l] == 'fc':
                 dW,db,dA_prev = self.linear_backward(self.grads['dA'+str(l+1)],l+1)
-
+            elif self.layer_type[l] == 'conv':
+                print('conv back')
+                print('shape of dz =>',self.cache[l][1][0].shape)
+                dW,db,dA_prev = self.conv_backward((self.cache[l][1][0]),self.cache[l][0])
             self.grads['dW'+str(l+1)] = dW
             self.grads['db'+str(l+1)] = db
             self.grads['dA'+str(l)] = dA_prev
+        
+        self.layer_type = temp
     
     @staticmethod
     def zero_pad(imgData,pad):
@@ -303,8 +332,19 @@ class nn:
         X = np.pad(imgData,((0,0),(pad,pad),(pad,pad),(0,0)),'constant',constant_values = 0)
         return X
 
-    
-   
+    def conv2d(self,in_planes,out_planes,kernel_size,activation,stride=1,padding=0):
+        '''
+        Add paramters for this layer in the parameters list
+
+        :return : None
+        '''
+        num_layers = int(len(self.parameters)/2)
+        self.parameters['W'+str(num_layers+1)] = np.random.randn(kernel_size,kernel_size,in_planes,out_planes)
+        self.parameters['b'+str(num_layers+1)] = np.random.randn(1,1,1,out_planes)
+        self.activations.append(activation)
+        self.layer_type.append('conv')
+        self.hyperparam[num_layers+1] = list((stride,padding))
+
     def conv_single(self,a_prev_slice,W,b):
         '''
         Apply convolution using W and b as filter on the activation slice of the previous layer
@@ -334,8 +374,8 @@ class nn:
         f,f,nc_prev,nc = W.shape
         stride,pad = hyper_param
         #comupte the dimensions of the result using convolution formula => w/h = (w/h(prev) -f +2*pad)/stride +1
-        n_h = int(np.floor((h_prev-f+2*pad)/2)) +1
-        n_w = int(np.floor((w_prev-f+2*pad)/2)) +1
+        n_h = int(np.floor((h_prev-f+2*pad)/stride)) +1
+        n_w = int(np.floor((w_prev-f+2*pad)/stride)) +1
         
         Z = np.zeros((m,n_h,n_w,nc))
         A_prev_pad = self.zero_pad(A_prev,pad)
@@ -391,10 +431,146 @@ class nn:
                         elif type == 'avg':
                             A[i,h,w,c] = np.mean(a_prev_slice)
         
-        cache = (A_prev,[f,stride])
+        cache = (A_prev,[f,stride],type)
         return A,cache
 
 
+
+
+    def conv_backward(self,dZ, cache):
+        """
+        Implement the backward propagation for a convolution function
+        
+        Arguments:
+        dZ -- gradient of the cost with respect to the output of the conv layer (Z), numpy array of shape (m, n_H, n_W, n_C)
+        cache -- cache of values needed for the conv_backward(), output of conv_forward()
+        
+        Returns:
+        dA_prev -- gradient of the cost with respect to the input of the conv layer (A_prev),
+                   numpy array of shape (m, n_H_prev, n_W_prev, n_C_prev)
+        dW -- gradient of the cost with respect to the weights of the conv layer (W)
+              numpy array of shape (f, f, n_C_prev, n_C)
+        db -- gradient of the cost with respect to the biases of the conv layer (b)
+              numpy array of shape (1, 1, 1, n_C)
+        """
+        
+
+        (A_prev, W, b, hparameters) = cache
+        
+        (m, n_H_prev, n_W_prev, n_C_prev) = A_prev.shape
+        
+        (f, f, n_C_prev, n_C) = W.shape
+        
+        stride = hparameters[0]
+        pad = hparameters[1]
+        
+        (m, n_H, n_W, n_C) = dZ.shape
+        
+        dA_prev = np.zeros((m, n_H_prev, n_W_prev, n_C_prev))                           
+        dW = np.zeros((f, f, n_C_prev, n_C))
+        db = np.zeros((1, 1, 1, n_C))
+
+        A_prev_pad = self.zero_pad(A_prev, pad)
+        dA_prev_pad = self.zero_pad(dA_prev, pad)
+        
+        for i in range(m):                      
+            
+            a_prev_pad = A_prev_pad[i]
+            da_prev_pad = dA_prev_pad[i]
+            
+            for h in range(n_H):                  
+                for w in range(n_W):               
+                    for c in range(n_C):           
+                        
+                        vert_start = h * stride
+
+                        vert_end = vert_start + f
+                        horiz_start = w * stride
+
+                        horiz_end = horiz_start + f
+                        
+                        a_slice = a_prev_pad[vert_start:vert_end, horiz_start:horiz_end, :]
+
+                        da_prev_pad[vert_start:vert_end, horiz_start:horiz_end, :] += W[:,:,:,c] * dZ[i, h, w, c]
+                        dW[:,:,:,c] += a_slice * dZ[i, h, w, c]
+                        db[:,:,:,c] += dZ[i, h, w, c]
+                        
+            dA_prev[i, :, :, :] =  da_prev_pad if pad == 0 else da_prev_pad[pad:-pad,pad:-pad,:]
+        
+        assert(dA_prev.shape == (m, n_H_prev, n_W_prev, n_C_prev))
+        
+        return dA_prev, dW, db
+
+
+ 
+    
+    def create_mask(self,X):
+        '''
+        Creates mask of from a slice which sets max element index to 1 and others to 0
+
+        :param X: original matrix
+        :return :mask
+        '''
+        mask = (X==np.max(X))
+
+        return mask
+
+    def average_back(self,X,shape):
+        '''
+        Computes backward pass for average pooling layer
+
+        :param X: average pooled layer
+        :param shape: shape of the original matrix
+        '''
+        h,w = shape
+        X = X/(h*w)
+        return np.ones(shape)*X
+
+    def pool_backward(self,dA, cache, mode = "max"):
+        """
+        Implements the backward pass of the pooling layer
+        
+        :param dA: gradient of cost with respect to the output of the pooling layer, same shape as A
+        :param cache: cache output from the forward pass of the pooling layer, contains the layer's input and hparameters 
+        :param mode:the pooling mode you would like to use, defined as a string ("max" or "average")
+        
+        Returns:
+        dA_prev  gradient of cost with respect to the input of the pooling layer, same shape as A_prev
+        """
+        
+        (A_prev, (stride,f),type) = cache
+        
+        m, n_H_prev, n_W_prev, n_C_prev = A_prev.shape
+        m, n_H, n_W, n_C = dA.shape
+        
+        dA_prev = np.zeros(A_prev.shape)
+        
+        for i in range(m):                       
+            a_prev = A_prev[i]
+            for h in range(n_H):                   
+                for w in range(n_W):               
+                    for c in range(n_C):           
+                        
+                        vert_start = h*stride
+                        vert_end = vert_start + f
+                        horiz_start = w*stride
+                        horiz_end = horiz_start + f
+                        
+                        
+                        if type == "max":
+                        
+                            a_prev_slice = a_prev[vert_start:vert_end, horiz_start:horiz_end, c]
+                            mask = self.create_mask(a_prev_slice)
+                            dA_prev[i, vert_start:vert_end, horiz_start:horiz_end, c] += np.multiply(mask, dA[i, h, w, c])
+                        elif mode == "average":
+                            da = dA[i, h, w, c]
+                            shape = (f, f)
+                            dA_prev[i, vert_start:vert_end, horiz_start:horiz_end, c] += self.average_back(da, shape)
+                        
+    
+    
+        return dA_prev                           
+                            
 
     def __str__(self):
         '''
@@ -409,16 +585,13 @@ class nn:
         return net_string
 
 
+net = nn()
+net.conv2d(3,5,3,'relu',padding=1)
+net.add_fcn([36*5,10,5],['relu','relu'])
 
-np.random.seed(1)
-A_prev = np.random.randn(2, 4, 4, 3)
-stride =  2
-f = 3
-net = nn([10],['relu'])
-A, cache = net.pool_forward(A_prev, f,stride,'max')
-print("mode = max")
-print("A =", A)
-print()
-A, cache = net.pool_forward(A_prev, f,stride, "avg")
-print("mode = average")
-print("A =", A)
+X = np.random.randn(10*6*6*3).reshape((10,6,6,3))
+res,c = net.conv_forward(X,net.parameters['W1'],net.parameters['b1'],[1,0])
+out = net.forward(X)
+print(out.shape)
+net.cost_function = 'CrossEntropyLoss'
+net.backward(out,out)
