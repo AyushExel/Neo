@@ -13,6 +13,7 @@ def test_run():
 
     :return: None
     """
+    
     # test run for binary classification problem:
     np.random.seed(3)
     print('Running a binary classification test')
@@ -102,7 +103,15 @@ def test_run():
     print('for Adam ')
     optim = optimizer.AdamOptimizer
     optim(X,Y,net,alpha=0.3,epoch=70,lamb=0.05,print_at=5)
-
+    #Sampe test for COnvolution layers => (NOTE: this is just test for bugs)
+    net = nn.nn()
+    net.conv2d(3,5,3,'relu',padding=1)
+    net.add_fcn([36*5,10,5],['relu','relu'])
+    
+    X = np.random.randn(10*6*6*3).reshape((10,6,6,3))
+    out = net.forward(X)
+    net.cost_function = 'CrossEntropyLoss'
+    net.backward(out,out)
  
 
    

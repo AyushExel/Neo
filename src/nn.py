@@ -311,8 +311,6 @@ class nn:
             if self.layer_type[l] == 'fc':
                 dW,db,dA_prev = self.linear_backward(self.grads['dA'+str(l+1)],l+1)
             elif self.layer_type[l] == 'conv':
-                print('conv back')
-                print('shape of dz =>',self.cache[l][1][0].shape)
                 dW,db,dA_prev = self.conv_backward((self.cache[l][1][0]),self.cache[l][0])
             self.grads['dW'+str(l+1)] = dW
             self.grads['db'+str(l+1)] = db
@@ -585,13 +583,4 @@ class nn:
         return net_string
 
 
-net = nn()
-net.conv2d(3,5,3,'relu',padding=1)
-net.add_fcn([36*5,10,5],['relu','relu'])
 
-X = np.random.randn(10*6*6*3).reshape((10,6,6,3))
-res,c = net.conv_forward(X,net.parameters['W1'],net.parameters['b1'],[1,0])
-out = net.forward(X)
-print(out.shape)
-net.cost_function = 'CrossEntropyLoss'
-net.backward(out,out)
