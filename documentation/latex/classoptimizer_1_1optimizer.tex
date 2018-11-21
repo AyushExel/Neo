@@ -3,20 +3,42 @@
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classoptimizer_1_1optimizer_adc3ce4d6f25ba68c0f4bd442a54d2155}{gradient\+Descent\+Optimizer} (input, mappings, net, alpha=0.\+001, lamb=None, epoch=100, print\+\_\+at=5, prnt=True, update=True)
+def \mbox{\hyperlink{classoptimizer_1_1optimizer_a14925be33f066a482408567cf9ee440f}{gradient\+Descent\+Optimizer}} (input, mappings, net, alpha=0.\+001, lamb=0, epoch=100, print\+\_\+at=5, prnt=True, update=True)
 \item 
-def \hyperlink{classoptimizer_1_1optimizer_a9248b4bea24619717271e053d49abc9c}{S\+G\+D\+Optimizer} (input, mappings, net, mini\+\_\+batch\+\_\+size=64, alpha=0.\+001, lamb=None, momentum=None, epoch=5, print\+\_\+at=5, prnt=True)
+def \mbox{\hyperlink{classoptimizer_1_1optimizer_a0daa3477ecb2e73e07de11560d197f48}{S\+G\+D\+Optimizer}} (input, mappings, net, mini\+\_\+batch\+\_\+size=64, alpha=0.\+001, lamb=0, momentum=None, epoch=5, print\+\_\+at=5, prnt=True)
 \item 
-def \hyperlink{classoptimizer_1_1optimizer_ae54007767b7637fc2a1bfd0bc0a71934}{update\+\_\+params} (params, updation, learning\+\_\+rate)
+def \mbox{\hyperlink{classoptimizer_1_1optimizer_a6dc8176e4d509fcc5f8169e318e04a34}{Adam\+Optimizer}} (input, mappings, net, alpha=0.\+001, lamb=0, betas=(0.\+9, 0.\+99), epoch=5, print\+\_\+at=5, prnt=True)
+\item 
+def \mbox{\hyperlink{classoptimizer_1_1optimizer_ae54007767b7637fc2a1bfd0bc0a71934}{update\+\_\+params}} (params, updation, learning\+\_\+rate)
 \end{DoxyCompactItemize}
 
 
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classoptimizer_1_1optimizer_adc3ce4d6f25ba68c0f4bd442a54d2155}\label{classoptimizer_1_1optimizer_adc3ce4d6f25ba68c0f4bd442a54d2155}} 
+\mbox{\Hypertarget{classoptimizer_1_1optimizer_a6dc8176e4d509fcc5f8169e318e04a34}\label{classoptimizer_1_1optimizer_a6dc8176e4d509fcc5f8169e318e04a34}} 
+\index{optimizer\+::optimizer@{optimizer\+::optimizer}!Adam\+Optimizer@{Adam\+Optimizer}}
+\index{Adam\+Optimizer@{Adam\+Optimizer}!optimizer\+::optimizer@{optimizer\+::optimizer}}
+\subsubsection{\texorpdfstring{Adam\+Optimizer()}{AdamOptimizer()}}
+{\footnotesize\ttfamily def optimizer.\+optimizer.\+Adam\+Optimizer (\begin{DoxyParamCaption}\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{net,  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily 0},  }\item[{}]{betas = {\ttfamily (0.9,0.99)},  }\item[{}]{epoch = {\ttfamily 5},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Performs Adam otimization on the given network.
+
+:param input  : input for neural net
+:param mapping: Correct output of the function
+:param net    : nn.nn object which provides the network architecture
+:param alpha  : Learning rate
+:param lamb   : Regularization parameter
+:param betas: Adam Hyper parameters
+:param epoch  : Number of iterations
+:param print_at: Print at multiples of 'print_at'
+:param prnt   : Print if prnt=true
+
+:return : None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classoptimizer_1_1optimizer_a14925be33f066a482408567cf9ee440f}\label{classoptimizer_1_1optimizer_a14925be33f066a482408567cf9ee440f}} 
 \index{optimizer\+::optimizer@{optimizer\+::optimizer}!gradient\+Descent\+Optimizer@{gradient\+Descent\+Optimizer}}
 \index{gradient\+Descent\+Optimizer@{gradient\+Descent\+Optimizer}!optimizer\+::optimizer@{optimizer\+::optimizer}}
 \subsubsection{\texorpdfstring{gradient\+Descent\+Optimizer()}{gradientDescentOptimizer()}}
-{\footnotesize\ttfamily def optimizer.\+optimizer.\+gradient\+Descent\+Optimizer (\begin{DoxyParamCaption}\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{net,  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily None},  }\item[{}]{epoch = {\ttfamily 100},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True},  }\item[{}]{update = {\ttfamily True} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily def optimizer.\+optimizer.\+gradient\+Descent\+Optimizer (\begin{DoxyParamCaption}\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{net,  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily 0},  }\item[{}]{epoch = {\ttfamily 100},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True},  }\item[{}]{update = {\ttfamily True} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \begin{DoxyVerb}Performs gradient descent on the given network setting the default value of epoch and alpha if not provided otherwise
 
@@ -29,11 +51,11 @@ def \hyperlink{classoptimizer_1_1optimizer_ae54007767b7637fc2a1bfd0bc0a71934}{up
 :param print_at: Print at multiples of 'print_at'
 :param prnt   : Print if prnt=true
 \end{DoxyVerb}
- \mbox{\Hypertarget{classoptimizer_1_1optimizer_a9248b4bea24619717271e053d49abc9c}\label{classoptimizer_1_1optimizer_a9248b4bea24619717271e053d49abc9c}} 
+ \mbox{\Hypertarget{classoptimizer_1_1optimizer_a0daa3477ecb2e73e07de11560d197f48}\label{classoptimizer_1_1optimizer_a0daa3477ecb2e73e07de11560d197f48}} 
 \index{optimizer\+::optimizer@{optimizer\+::optimizer}!S\+G\+D\+Optimizer@{S\+G\+D\+Optimizer}}
 \index{S\+G\+D\+Optimizer@{S\+G\+D\+Optimizer}!optimizer\+::optimizer@{optimizer\+::optimizer}}
 \subsubsection{\texorpdfstring{S\+G\+D\+Optimizer()}{SGDOptimizer()}}
-{\footnotesize\ttfamily def optimizer.\+optimizer.\+S\+G\+D\+Optimizer (\begin{DoxyParamCaption}\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{net,  }\item[{}]{mini\+\_\+batch\+\_\+size = {\ttfamily 64},  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily None},  }\item[{}]{momentum = {\ttfamily None},  }\item[{}]{epoch = {\ttfamily 5},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+{\footnotesize\ttfamily def optimizer.\+optimizer.\+S\+G\+D\+Optimizer (\begin{DoxyParamCaption}\item[{}]{input,  }\item[{}]{mappings,  }\item[{}]{net,  }\item[{}]{mini\+\_\+batch\+\_\+size = {\ttfamily 64},  }\item[{}]{alpha = {\ttfamily 0.001},  }\item[{}]{lamb = {\ttfamily 0},  }\item[{}]{momentum = {\ttfamily None},  }\item[{}]{epoch = {\ttfamily 5},  }\item[{}]{print\+\_\+at = {\ttfamily 5},  }\item[{}]{prnt = {\ttfamily True} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 \begin{DoxyVerb}Performs Stochaitic gradient descent on the given network
 -Generates mini batches of given size using random permutation
@@ -70,4 +92,4 @@ def \hyperlink{classoptimizer_1_1optimizer_ae54007767b7637fc2a1bfd0bc0a71934}{up
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\hyperlink{optimizer_8py}{optimizer.\+py}\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{optimizer_8py}{optimizer.\+py}}\end{DoxyCompactItemize}

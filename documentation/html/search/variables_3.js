@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lamb',['lamb',['../classnn_1_1nn.html#a11943885141afc3a47049b9d2769fd1b',1,'nn::nn']]]
+  ['hyperparam',['hyperparam',['../classnn_1_1nn.html#a394100bd2fb034cd818612776713a3f9',1,'nn::nn']]]
 ];

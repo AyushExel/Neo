@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['test',['test',['../namespacetest.html',1,'']]],
-  ['test_2epy',['test.py',['../test_8py.html',1,'']]],
-  ['test_5frun',['test_run',['../namespacetest.html#ae33228479f5f6d2957b7e3b5177e1328',1,'test']]]
+  ['sgdoptimizer',['SGDOptimizer',['../classoptimizer_1_1optimizer.html#a0daa3477ecb2e73e07de11560d197f48',1,'optimizer::optimizer']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gradientdescentoptimizer',['gradientDescentOptimizer',['../classoptimizer_1_1optimizer.html#adc3ce4d6f25ba68c0f4bd442a54d2155',1,'optimizer::optimizer']]]
+  ['forward',['forward',['../classnn_1_1nn.html#ae07002745b03901814d92ac66fe87781',1,'nn::nn']]]
 ];

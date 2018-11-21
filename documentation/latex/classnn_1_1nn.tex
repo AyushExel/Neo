@@ -3,63 +3,88 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, layer\+\_\+dimensions, \hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations})
+def \mbox{\hyperlink{classnn_1_1nn_a74489f9e02e4fca4de94ab099f3b28b4}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, layer\+\_\+dimensions=\mbox{[}$\,$\mbox{]}, \mbox{\hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations}}=\mbox{[}$\,$\mbox{]})
 \item 
-def \hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+parameters} (self, layer\+\_\+dimensions)
+def \mbox{\hyperlink{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}{initialize\+\_\+parameters}} (self, layer\+\_\+dimensions)
 \item 
-def \hyperlink{classnn_1_1nn_a15ee3f3e18ebae83c904b3441ece897d}{check\+\_\+activations} (self)
+def \mbox{\hyperlink{classnn_1_1nn_a6d616cb56588767f5ce1c20d6b7c6bc0}{add\+\_\+fcn}} (self, dims, \mbox{\hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations}})
 \item 
-def \hyperlink{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}{forward} (self, net\+\_\+input)
+def \mbox{\hyperlink{classnn_1_1nn_a15ee3f3e18ebae83c904b3441ece897d}{check\+\_\+activations}} (self)
 \item 
-def \hyperlink{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}{forward\+\_\+upto} (self, net\+\_\+input, layer\+\_\+num)
+def \mbox{\hyperlink{classnn_1_1nn_ae07002745b03901814d92ac66fe87781}{forward}} (self, net\+\_\+input)
 \item 
-def \hyperlink{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}{M\+S\+E\+Loss} (self, prediction, mappings)
+def \mbox{\hyperlink{classnn_1_1nn_ae74a0f21e8722ea82a0f94135a81a348}{M\+S\+E\+Loss}} (self, prediction, mappings)
 \item 
-def \hyperlink{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}{Cross\+Entropy\+Loss} (self, prediction, mappings)
+def \mbox{\hyperlink{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}{Cross\+Entropy\+Loss}} (self, prediction, mappings)
 \item 
-def \hyperlink{classnn_1_1nn_afa7d1462872fae95fe71f27ed00bf7ae}{output\+\_\+backward} (self, prediction, mapping)
+def \mbox{\hyperlink{classnn_1_1nn_afa7d1462872fae95fe71f27ed00bf7ae}{output\+\_\+backward}} (self, prediction, mapping)
 \item 
-def \hyperlink{classnn_1_1nn_a475811849fd370a47eb0e3b7bc09b283}{deactivate} (self, dA, n\+\_\+layer)
+def \mbox{\hyperlink{classnn_1_1nn_a475811849fd370a47eb0e3b7bc09b283}{deactivate}} (self, dA, n\+\_\+layer)
 \item 
-def \hyperlink{classnn_1_1nn_a0863e90359fa30486c7161cd31c5b4e7}{linear\+\_\+backward} (self, dA, n\+\_\+layer)
+def \mbox{\hyperlink{classnn_1_1nn_a0863e90359fa30486c7161cd31c5b4e7}{linear\+\_\+backward}} (self, dA, n\+\_\+layer)
 \item 
-def \hyperlink{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}{backward} (self, prediction, mappings)
+def \mbox{\hyperlink{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}{backward}} (self, prediction, mappings)
 \item 
-def \hyperlink{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}{\+\_\+\+\_\+str\+\_\+\+\_\+} (self)
+def \mbox{\hyperlink{classnn_1_1nn_a6d25d703f48b59a7c1888a364ab562e2}{conv2d}} (self, in\+\_\+planes, out\+\_\+planes, kernel\+\_\+size, activation, stride=1, padding=0)
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_a9d0fccfef95f2c245476afed656e80f6}{conv\+\_\+single}} (self, a\+\_\+prev\+\_\+slice, W, b)
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_ae778f37f71cdca8e917112deae9f4735}{conv\+\_\+forward}} (self, A\+\_\+prev, W, b, hyper\+\_\+param)
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_a41278f302aa3d60fae1b5812d3ad3e5c}{pool\+\_\+forward}} (self, A\+\_\+prev, f, stride, type=\textquotesingle{}max\textquotesingle{})
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_a3b35ba09acdfe74500c3cb1359162997}{conv\+\_\+backward}} (self, dZ, \mbox{\hyperlink{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}{cache}})
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_aae4f8d920993bf5668b04f3525215c6f}{create\+\_\+mask}} (self, X)
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_aff147cb8f5d4919dd728fb0cbb6b0bbd}{average\+\_\+back}} (self, X, shape)
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_aa5d886ef2ff91c73160129eb16d63d78}{pool\+\_\+backward}} (self, dA, \mbox{\hyperlink{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}{cache}}, mode=\char`\"{}max\char`\"{})
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_a1c967a0ae06ef2a7e8077cc9aa29aabc}{\+\_\+\+\_\+str\+\_\+\+\_\+}} (self)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \mbox{\hyperlink{classnn_1_1nn_a0d8bdf9cacca85758429cebaa17336ef}{zero\+\_\+pad}} (img\+Data, pad)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}{parameters}
+\mbox{\hyperlink{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}{parameters}}
 \item 
-\hyperlink{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}{cache}
+\mbox{\hyperlink{classnn_1_1nn_a1f75a6242fc9ee82ca2632e18979b4d3}{cache}}
 \item 
-\hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations}
+\mbox{\hyperlink{classnn_1_1nn_acb7fb4cc0db120b007ef1ab1f82d7ba0}{activations}}
 \item 
-\hyperlink{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}{cost\+\_\+function}
+\mbox{\hyperlink{classnn_1_1nn_adb4a96a154d03db3722022600e134c7f}{cost\+\_\+function}}
 \item 
-\hyperlink{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}{lamb}
+\mbox{\hyperlink{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}{lamb}}
 \item 
-\hyperlink{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}{grads}
+\mbox{\hyperlink{classnn_1_1nn_a50e9804c2895867c31833f877c7d5d60}{grads}}
+\item 
+\mbox{\hyperlink{classnn_1_1nn_a4850861a98c6058da6df33c52ae886a4}{layer\+\_\+type}}
+\item 
+\mbox{\hyperlink{classnn_1_1nn_a394100bd2fb034cd818612776713a3f9}{hyperparam}}
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classnn_1_1nn_a1cefed6bf4fd61d437e68c901a15fda2}{\+\_\+\+\_\+activate} (self, Z, n\+\_\+layer=1)
+def \mbox{\hyperlink{classnn_1_1nn_a1cefed6bf4fd61d437e68c901a15fda2}{\+\_\+\+\_\+activate}} (self, Z, n\+\_\+layer=1)
 \end{DoxyCompactItemize}
 \subsection*{Static Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-def \hyperlink{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}{\+\_\+\+\_\+linear\+\_\+forward} (A\+\_\+prev, W, b)
+def \mbox{\hyperlink{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}{\+\_\+\+\_\+linear\+\_\+forward}} (A\+\_\+prev, W, b)
 \end{DoxyCompactItemize}
 
 
 \subsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}\label{classnn_1_1nn_ad7304c7932970a07bf2869e97b79e0b5}} 
+\mbox{\Hypertarget{classnn_1_1nn_a74489f9e02e4fca4de94ab099f3b28b4}\label{classnn_1_1nn_a74489f9e02e4fca4de94ab099f3b28b4}} 
 \index{nn\+::nn@{nn\+::nn}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
 \index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
-{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+dimensions,  }\item[{}]{activations }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily def nn.\+nn.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{layer\+\_\+dimensions = {\ttfamily \mbox{[}\mbox{]}},  }\item[{}]{activations = {\ttfamily \mbox{[}\mbox{]}} }\end{DoxyParamCaption})}
 
 \begin{DoxyVerb}Initializes networks's weights and other useful variables.
 
@@ -72,6 +97,7 @@ def \hyperlink{classnn_1_1nn_a78173fb77f846a71e27f097b29e701f8}{\+\_\+\+\_\+line
 -cost_function  contains the name of cost function to be used
 -lamb contains the regularization hyper-parameter
 -grads contains the gradients calculated during back-prop in form {'dA(i-1)':[],'dWi':[],'dbi':[]}
+-layer_type contains the info about the type of layer( fc, conv etc)
 \end{DoxyVerb}
  
 
@@ -113,6 +139,27 @@ Note: This function treats 1 as starting index!
 
 \begin{DoxyVerb}:Return: the network architecture and connectivity
 \end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a6d616cb56588767f5ce1c20d6b7c6bc0}\label{classnn_1_1nn_a6d616cb56588767f5ce1c20d6b7c6bc0}} 
+\index{nn\+::nn@{nn\+::nn}!add\+\_\+fcn@{add\+\_\+fcn}}
+\index{add\+\_\+fcn@{add\+\_\+fcn}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{add\+\_\+fcn()}{add\_fcn()}}
+{\footnotesize\ttfamily def nn.\+nn.\+add\+\_\+fcn (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dims,  }\item[{}]{activations }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add fully connected layers in between the network
+:param dims:list describing dimensions of fully connected networks
+:param activations: activations of each layer
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_aff147cb8f5d4919dd728fb0cbb6b0bbd}\label{classnn_1_1nn_aff147cb8f5d4919dd728fb0cbb6b0bbd}} 
+\index{nn\+::nn@{nn\+::nn}!average\+\_\+back@{average\+\_\+back}}
+\index{average\+\_\+back@{average\+\_\+back}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{average\+\_\+back()}{average\_back()}}
+{\footnotesize\ttfamily def nn.\+nn.\+average\+\_\+back (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{X,  }\item[{}]{shape }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Computes backward pass for average pooling layer
+
+:param X: average pooled layer
+:param shape: shape of the original matrix
+\end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}\label{classnn_1_1nn_a53a7beb698fe127ebb1f636fccbaa126}} 
 \index{nn\+::nn@{nn\+::nn}!backward@{backward}}
 \index{backward@{backward}!nn\+::nn@{nn\+::nn}}
@@ -134,6 +181,75 @@ Note: This function treats 1 as starting index!
 \begin{DoxyVerb}Checks if activations for all layers are present. Adds 'None' if no activations are provided for a particular layer.
 
 :returns: None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a6d25d703f48b59a7c1888a364ab562e2}\label{classnn_1_1nn_a6d25d703f48b59a7c1888a364ab562e2}} 
+\index{nn\+::nn@{nn\+::nn}!conv2d@{conv2d}}
+\index{conv2d@{conv2d}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{conv2d()}{conv2d()}}
+{\footnotesize\ttfamily def nn.\+nn.\+conv2d (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{in\+\_\+planes,  }\item[{}]{out\+\_\+planes,  }\item[{}]{kernel\+\_\+size,  }\item[{}]{activation,  }\item[{}]{stride = {\ttfamily 1},  }\item[{}]{padding = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Add paramters for this layer in the parameters list
+
+:return : None
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a3b35ba09acdfe74500c3cb1359162997}\label{classnn_1_1nn_a3b35ba09acdfe74500c3cb1359162997}} 
+\index{nn\+::nn@{nn\+::nn}!conv\+\_\+backward@{conv\+\_\+backward}}
+\index{conv\+\_\+backward@{conv\+\_\+backward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{conv\+\_\+backward()}{conv\_backward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+conv\+\_\+backward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dZ,  }\item[{}]{cache }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implement the backward propagation for a convolution function
+
+Arguments:
+dZ -- gradient of the cost with respect to the output of the conv layer (Z), numpy array of shape (m, n_H, n_W, n_C)
+cache -- cache of values needed for the conv_backward(), output of conv_forward()
+
+Returns:
+dA_prev -- gradient of the cost with respect to the input of the conv layer (A_prev),
+   numpy array of shape (m, n_H_prev, n_W_prev, n_C_prev)
+dW -- gradient of the cost with respect to the weights of the conv layer (W)
+      numpy array of shape (f, f, n_C_prev, n_C)
+db -- gradient of the cost with respect to the biases of the conv layer (b)
+      numpy array of shape (1, 1, 1, n_C)
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_ae778f37f71cdca8e917112deae9f4735}\label{classnn_1_1nn_ae778f37f71cdca8e917112deae9f4735}} 
+\index{nn\+::nn@{nn\+::nn}!conv\+\_\+forward@{conv\+\_\+forward}}
+\index{conv\+\_\+forward@{conv\+\_\+forward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{conv\+\_\+forward()}{conv\_forward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+conv\+\_\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{A\+\_\+prev,  }\item[{}]{W,  }\item[{}]{b,  }\item[{}]{hyper\+\_\+param }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implements forward pass of convolutional layer.
+
+:param A_prev:activations of previous layer
+:param W: Filter
+:param b: bias
+:param hyper_param  : list of hyperparameters, stride and padding
+
+:return: Z,cache
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a9d0fccfef95f2c245476afed656e80f6}\label{classnn_1_1nn_a9d0fccfef95f2c245476afed656e80f6}} 
+\index{nn\+::nn@{nn\+::nn}!conv\+\_\+single@{conv\+\_\+single}}
+\index{conv\+\_\+single@{conv\+\_\+single}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{conv\+\_\+single()}{conv\_single()}}
+{\footnotesize\ttfamily def nn.\+nn.\+conv\+\_\+single (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{a\+\_\+prev\+\_\+slice,  }\item[{}]{W,  }\item[{}]{b }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Apply convolution using W and b as filter on the activation slice of the previous layer
+
+:param a_prev_slice: a slice of previous activated layer
+:param W           : Filter
+:param b           : bais
+:return Z: scalar value resultant of the convolution
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_aae4f8d920993bf5668b04f3525215c6f}\label{classnn_1_1nn_aae4f8d920993bf5668b04f3525215c6f}} 
+\index{nn\+::nn@{nn\+::nn}!create\+\_\+mask@{create\+\_\+mask}}
+\index{create\+\_\+mask@{create\+\_\+mask}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{create\+\_\+mask()}{create\_mask()}}
+{\footnotesize\ttfamily def nn.\+nn.\+create\+\_\+mask (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{X }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Creates mask of from a slice which sets max element index to 1 and others to 0
+
+:param X: original matrix
+:return :mask
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}\label{classnn_1_1nn_a822299322a0b513f8985e61096be45bc}} 
 \index{nn\+::nn@{nn\+::nn}!Cross\+Entropy\+Loss@{Cross\+Entropy\+Loss}}
@@ -170,18 +286,6 @@ Changes cost_function to appropriate value
 
 :param net_input: Contains the input to the Network
 :return: Output of the network
-\end{DoxyVerb}
- \mbox{\Hypertarget{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}\label{classnn_1_1nn_ac3d2b61ed992dc615eacda8e75a61a2b}} 
-\index{nn\+::nn@{nn\+::nn}!forward\+\_\+upto@{forward\+\_\+upto}}
-\index{forward\+\_\+upto@{forward\+\_\+upto}!nn\+::nn@{nn\+::nn}}
-\subsubsection{\texorpdfstring{forward\+\_\+upto()}{forward\_upto()}}
-{\footnotesize\ttfamily def nn.\+nn.\+forward\+\_\+upto (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{net\+\_\+input,  }\item[{}]{layer\+\_\+num }\end{DoxyParamCaption})}
-
-\begin{DoxyVerb}Calculates forward prop upto layer_num.
-
-:param net_input: Contains the input to the Network
-:param layer_num: Layer up to which forward prop is to be calculated
-:return: Activations of layer layer_num
 \end{DoxyVerb}
  \mbox{\Hypertarget{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}\label{classnn_1_1nn_a9821fed1369b4d709fe297fe9e07d97b}} 
 \index{nn\+::nn@{nn\+::nn}!initialize\+\_\+parameters@{initialize\+\_\+parameters}}
@@ -234,6 +338,48 @@ Changes cost_function to appropriate value
 :param cost_type: Type of Cost function used
 :return: Derivative of output layer, dA  
 \end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_aa5d886ef2ff91c73160129eb16d63d78}\label{classnn_1_1nn_aa5d886ef2ff91c73160129eb16d63d78}} 
+\index{nn\+::nn@{nn\+::nn}!pool\+\_\+backward@{pool\+\_\+backward}}
+\index{pool\+\_\+backward@{pool\+\_\+backward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{pool\+\_\+backward()}{pool\_backward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+pool\+\_\+backward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{dA,  }\item[{}]{cache,  }\item[{}]{mode = {\ttfamily \char`\"{}max\char`\"{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Implements the backward pass of the pooling layer
+
+:param dA: gradient of cost with respect to the output of the pooling layer, same shape as A
+:param cache: cache output from the forward pass of the pooling layer, contains the layer's input and hparameters 
+:param mode:the pooling mode you would like to use, defined as a string ("max" or "average")
+
+Returns:
+dA_prev  gradient of cost with respect to the input of the pooling layer, same shape as A_prev
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a41278f302aa3d60fae1b5812d3ad3e5c}\label{classnn_1_1nn_a41278f302aa3d60fae1b5812d3ad3e5c}} 
+\index{nn\+::nn@{nn\+::nn}!pool\+\_\+forward@{pool\+\_\+forward}}
+\index{pool\+\_\+forward@{pool\+\_\+forward}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{pool\+\_\+forward()}{pool\_forward()}}
+{\footnotesize\ttfamily def nn.\+nn.\+pool\+\_\+forward (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{A\+\_\+prev,  }\item[{}]{f,  }\item[{}]{stride,  }\item[{}]{type = {\ttfamily \textquotesingle{}max\textquotesingle{}} }\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}To enable max and average pooling during the forward pass
+
+:param A_prev: Activation of previous layer
+:param   f   : filter size
+:param stride: size of each stride
+:param type  : type of pooling, max or average
+
+:returns A,cache:
+\end{DoxyVerb}
+ \mbox{\Hypertarget{classnn_1_1nn_a0d8bdf9cacca85758429cebaa17336ef}\label{classnn_1_1nn_a0d8bdf9cacca85758429cebaa17336ef}} 
+\index{nn\+::nn@{nn\+::nn}!zero\+\_\+pad@{zero\+\_\+pad}}
+\index{zero\+\_\+pad@{zero\+\_\+pad}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{zero\+\_\+pad()}{zero\_pad()}}
+{\footnotesize\ttfamily def nn.\+nn.\+zero\+\_\+pad (\begin{DoxyParamCaption}\item[{}]{img\+Data,  }\item[{}]{pad }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyVerb}Provides zero padding to the multi channel image data provided
+:param imgData: image data to pad
+:param pad    : amount of padding per layer
+
+:return : image with desired padding
+\end{DoxyVerb}
  
 
 \subsection{Member Data Documentation}
@@ -261,11 +407,23 @@ Changes cost_function to appropriate value
 \subsubsection{\texorpdfstring{grads}{grads}}
 {\footnotesize\ttfamily nn.\+nn.\+grads}
 
+\mbox{\Hypertarget{classnn_1_1nn_a394100bd2fb034cd818612776713a3f9}\label{classnn_1_1nn_a394100bd2fb034cd818612776713a3f9}} 
+\index{nn\+::nn@{nn\+::nn}!hyperparam@{hyperparam}}
+\index{hyperparam@{hyperparam}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{hyperparam}{hyperparam}}
+{\footnotesize\ttfamily nn.\+nn.\+hyperparam}
+
 \mbox{\Hypertarget{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}\label{classnn_1_1nn_a11943885141afc3a47049b9d2769fd1b}} 
 \index{nn\+::nn@{nn\+::nn}!lamb@{lamb}}
 \index{lamb@{lamb}!nn\+::nn@{nn\+::nn}}
 \subsubsection{\texorpdfstring{lamb}{lamb}}
 {\footnotesize\ttfamily nn.\+nn.\+lamb}
+
+\mbox{\Hypertarget{classnn_1_1nn_a4850861a98c6058da6df33c52ae886a4}\label{classnn_1_1nn_a4850861a98c6058da6df33c52ae886a4}} 
+\index{nn\+::nn@{nn\+::nn}!layer\+\_\+type@{layer\+\_\+type}}
+\index{layer\+\_\+type@{layer\+\_\+type}!nn\+::nn@{nn\+::nn}}
+\subsubsection{\texorpdfstring{layer\+\_\+type}{layer\_type}}
+{\footnotesize\ttfamily nn.\+nn.\+layer\+\_\+type}
 
 \mbox{\Hypertarget{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}\label{classnn_1_1nn_a69da89bd6d17dbc8596ab586b7678237}} 
 \index{nn\+::nn@{nn\+::nn}!parameters@{parameters}}
@@ -277,4 +435,4 @@ Changes cost_function to appropriate value
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-src/\hyperlink{nn_8py}{nn.\+py}\end{DoxyCompactItemize}
+src/\mbox{\hyperlink{nn_8py}{nn.\+py}}\end{DoxyCompactItemize}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['update_5fparams',['update_params',['../classoptimizer_1_1optimizer.html#ae54007767b7637fc2a1bfd0bc0a71934',1,'optimizer::optimizer']]]
+  ['sgdoptimizer',['SGDOptimizer',['../classoptimizer_1_1optimizer.html#a0daa3477ecb2e73e07de11560d197f48',1,'optimizer::optimizer']]]
 ];

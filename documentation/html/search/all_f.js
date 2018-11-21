@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['update_5fparams',['update_params',['../classoptimizer_1_1optimizer.html#ae54007767b7637fc2a1bfd0bc0a71934',1,'optimizer::optimizer']]]
+  ['test',['test',['../namespacetest.html',1,'']]],
+  ['test_2epy',['test.py',['../test_8py.html',1,'']]],
+  ['test_5frun',['test_run',['../namespacetest.html#ae33228479f5f6d2957b7e3b5177e1328',1,'test']]]
 ];

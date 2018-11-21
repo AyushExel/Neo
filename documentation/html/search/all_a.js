@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['nn',['nn',['../classnn_1_1nn.html',1,'nn.nn'],['../namespacenn.html',1,'nn']]],
-  ['nn_2epy',['nn.py',['../nn_8py.html',1,'']]]
+  ['mseloss',['MSELoss',['../classnn_1_1nn.html#ae74a0f21e8722ea82a0f94135a81a348',1,'nn::nn']]]
 ];

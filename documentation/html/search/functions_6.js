@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initialize_5fparameters',['initialize_parameters',['../classnn_1_1nn.html#a9821fed1369b4d709fe297fe9e07d97b',1,'nn::nn']]]
+  ['gradientdescentoptimizer',['gradientDescentOptimizer',['../classoptimizer_1_1optimizer.html#a14925be33f066a482408567cf9ee440f',1,'optimizer::optimizer']]]
 ];
