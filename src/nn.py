@@ -6,8 +6,10 @@ Contains all activation and loss functions some other utility function.
 import numpy as np
 import pdb
 
+from numpy import float64, ndarray
+from typing import List, Tuple, Union
 class nn:
-    def __init__(self, layer_dimensions=[], activations=[]):
+    def __init__(self, layer_dimensions: List[int] = [], activations: List[str] = []) -> None:
         """
         Initializes networks's weights and other useful variables.
 
@@ -34,7 +36,7 @@ class nn:
         self.check_activations()
  
 
-    def initialize_parameters(self, layer_dimensions):
+    def initialize_parameters(self, layer_dimensions: List[int]) -> None:
         """
         Xavier initialization of weights of a network described by given layer
         dimensions.
@@ -52,7 +54,7 @@ class nn:
             self.parameters["b" + str(i+num_layers)] = np.zeros((layer_dimensions[i], 1))
             self.layer_type.append('fc')
 
-    def add_fcn(self,dims,activations):
+    def add_fcn(self,dims: List[int],activations: List[str]) -> None:
         '''
         Add fully connected layers in between the network
         :param dims:list describing dimensions of fully connected networks
@@ -62,7 +64,7 @@ class nn:
         for i in activations:
             self.activations.append(i)
 
-    def check_activations(self):
+    def check_activations(self) -> None:
         '''
         Checks if activations for all layers are present. Adds 'None' if no activations are provided for a particular layer.
         
@@ -118,7 +120,7 @@ class nn:
 
         return act, act_cache
 
-    def forward(self, net_input):
+    def forward(self, net_input: ndarray) -> ndarray:
         """
         To forward propagate the entire Network.
 
@@ -183,7 +185,7 @@ class nn:
             return A
     ''' 
 
-    def MSELoss(self,prediction,mappings):
+    def MSELoss(self,prediction: ndarray,mappings: ndarray) -> float64:
         '''
         Calculates the Mean Squared error with regularization cost(if provided) between output of the network and the real
         mappings of a function.
@@ -204,7 +206,7 @@ class nn:
         
         return loss + regularization_cost
 
-    def CrossEntropyLoss(self,prediction,mappings):
+    def CrossEntropyLoss(self,prediction: ndarray,mappings: ndarray) -> float64:
         '''
         Calculates the cross entropy loss between output of the network and the real mappings of a function
         Changes cost_function to appropriate value
@@ -224,7 +226,7 @@ class nn:
 
         return loss + regularization_cost
     
-    def output_backward(self,prediction,mapping):
+    def output_backward(self,prediction: ndarray,mapping: ndarray) -> ndarray:
         '''
         Calculates the derivative of the output layer(dA)
 
@@ -243,7 +245,7 @@ class nn:
         
         return dA
     
-    def deactivate(self,dA,n_layer):
+    def deactivate(self,dA: ndarray,n_layer: int) -> Union[ndarray, int]:
         '''
         Calculates the derivate of dA by deactivating the layer
 
@@ -266,7 +268,7 @@ class nn:
 
         return deact
     
-    def linear_backward(self,dA,n_layer):
+    def linear_backward(self,dA: ndarray,n_layer: int) -> Tuple[ndarray, ndarray, ndarray]:
         '''
         Calculates linear backward propragation for layer denoted by n_layer
 
@@ -292,7 +294,7 @@ class nn:
         
         
 
-    def backward(self,prediction,mappings):
+    def backward(self,prediction: ndarray,mappings: ndarray) -> None:
         '''
         Backward propagates through the network and stores useful calculations
 
@@ -319,7 +321,7 @@ class nn:
         self.layer_type = temp
     
     @staticmethod
-    def zero_pad(imgData,pad):
+    def zero_pad(imgData: ndarray,pad: int) -> ndarray:
         '''
         Provides zero padding to the multi channel image data provided
         :param imgData: image data to pad
@@ -330,7 +332,7 @@ class nn:
         X = np.pad(imgData,((0,0),(pad,pad),(pad,pad),(0,0)),'constant',constant_values = 0)
         return X
 
-    def conv2d(self,in_planes,out_planes,kernel_size,activation,stride=1,padding=0):
+    def conv2d(self,in_planes: int,out_planes: int,kernel_size: int,activation: str,stride: int = 1,padding: int = 0) -> None:
         '''
         Add paramters for this layer in the parameters list
 
@@ -343,7 +345,7 @@ class nn:
         self.layer_type.append('conv')
         self.hyperparam[num_layers+1] = list((stride,padding))
 
-    def conv_single(self,a_prev_slice,W,b):
+    def conv_single(self,a_prev_slice: ndarray,W: ndarray,b: ndarray) -> float64:
         '''
         Apply convolution using W and b as filter on the activation slice of the previous layer
 
@@ -357,7 +359,7 @@ class nn:
         Z = Z + float(b) #to convert the value to float from matrix type
         return Z
     
-    def conv_forward(self,A_prev,W,b,hyper_param):
+    def conv_forward(self,A_prev: ndarray,W: ndarray,b: ndarray,hyper_param: List[int]) -> Tuple[ndarray, Tuple[ndarray, ndarray, ndarray, List[int]]]:
         '''
         Implements forward pass of convolutional layer.
         
@@ -435,7 +437,7 @@ class nn:
 
 
 
-    def conv_backward(self,dZ, cache):
+    def conv_backward(self,dZ: ndarray, cache: Tuple[ndarray, ndarray, ndarray, List[int]]) -> Tuple[ndarray, ndarray, ndarray]:
         """
         Implement the backward propagation for a convolution function
         
@@ -570,7 +572,7 @@ class nn:
         return dA_prev                           
                             
 
-    def __str__(self):
+    def __str__(self) -> str:
         '''
         :Return: the network architecture and connectivity
         '''
