@@ -167,15 +167,6 @@ class optimizer:
             
             if i%print_at == 0:
                 print('Loss at ', i , ' ' , loss)
-                
-    
-
-
-                
-
-
-
-        
 
     @staticmethod
     def update_params(params,updation,learning_rate):
